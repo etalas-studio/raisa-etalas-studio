@@ -14,6 +14,7 @@ Static landing page for RAISA by etalas studio.
 - Production domain: https://raisa.etalas.studio
 - Netlify fallback: https://raisa-etalas-studio.netlify.app
 - Netlify admin: https://app.netlify.com/projects/raisa-etalas-studio
+- GitHub repo: https://github.com/etalas-studio/raisa-etalas-studio
 
 ## Update Flow
 
