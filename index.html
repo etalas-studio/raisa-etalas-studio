@@ -5,38 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RAISA — AI Sales for Any Business</title>
   <meta name="description" content="RAISA helps teams find prospects, write outreach, follow up, and report pipeline activity with an AI sales agent built on OpenClaw.">
-  <meta name="theme-color" content="#101313">
+  <meta name="theme-color" content="#161210">
+  <script>document.documentElement.classList.add('js')</script>
   <link rel="canonical" href="https://raisa.etalas.studio/">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://raisa.etalas.studio/">
   <meta property="og:title" content="RAISA — AI Sales for Any Business">
   <meta property="og:description" content="Prospecting, outreach, follow-ups, and sales reporting in one AI workflow. Built by etalas studio on OpenClaw.">
-  <meta property="og:image" content="https://raisa.etalas.studio/assets/raisa-hero-workflow.png">
+  <meta property="og:image" content="https://raisa.etalas.studio/assets/raisa-hero-warm-window.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://raisa.etalas.studio/assets/raisa-hero-workflow.png">
+  <meta name="twitter:image" content="https://raisa.etalas.studio/assets/raisa-hero-warm-window.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,500;1,400&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
   <style>
     *,*::before,*::after{box-sizing:border-box}
     :root{
-      --ink:#101313;
-      --ink-2:#2b3331;
-      --muted:#65706d;
-      --line:#dfe5e1;
-      --paper:#f8faf6;
-      --paper-2:#eef4ef;
+      --ink:#1c1916;
+      --ink-2:#463c30;
+      --muted:#6b6153;
+      --line:#e4dbc9;
+      --paper:#f4efe4;
+      --paper-2:#ece2ce;
       --white:#ffffff;
-      --teal:#09b2a0;
-      --teal-2:#087d73;
-      --coral:#ff6b4a;
-      --amber:#f5b947;
-      --green:#68c574;
-      --shadow:0 24px 80px rgba(16,19,19,.12);
+      --teal:#b5572f;
+      --teal-2:#8a4325;
+      --coral:#b5572f;
+      --amber:#cf9a4a;
+      --green:#8a9a72;
+      --shadow:0 24px 80px rgba(28,25,22,.14);
     }
     html{scroll-behavior:smooth}
-    body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:16px;line-height:1.6}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:"Public Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:16px;line-height:1.6}
     body.lock{overflow:hidden}
     a{color:inherit}
     img{max-width:100%;display:block}
@@ -44,13 +45,14 @@
     [data-lang="en"] .en{display:initial}
     [data-lang="en"] .id{display:none}
     .container{width:min(1120px,calc(100% - 40px));margin:0 auto}
-    .nav{position:fixed;z-index:50;top:0;left:0;right:0;height:68px;display:flex;align-items:center;border-bottom:1px solid rgba(255,255,255,.12);background:rgba(10,14,14,.38);backdrop-filter:blur(18px);color:white}
+    .nav{position:fixed;z-index:50;top:0;left:0;right:0;height:68px;display:flex;align-items:center;border-bottom:1px solid transparent;background:transparent;color:white;transition:background-color .35s ease,border-color .35s ease,backdrop-filter .35s ease}
+    .nav.scrolled{border-bottom-color:rgba(255,255,255,.12);background:rgba(22,18,16,.55);backdrop-filter:blur(18px)}
     .nav-inner{width:min(1180px,calc(100% - 32px));margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px}
     .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700}
-    .brand-mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--teal),var(--coral));display:grid;place-items:center;box-shadow:0 10px 30px rgba(9,178,160,.28)}
+    .brand-mark{width:30px;height:30px;border-radius:8px;background:var(--teal);display:grid;place-items:center;box-shadow:0 10px 30px rgba(181,87,47,.32)}
     .brand-mark i{width:18px;height:18px}
     .brand span{font-size:18px}
-    .nav-links{display:flex;align-items:center;gap:24px;color:rgba(255,255,255,.76);font-size:14px}
+    .nav-links{display:flex;align-items:center;gap:22px;color:rgba(255,255,255,.78);font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:500}
     .nav-links a{text-decoration:none}
     .nav-actions{display:flex;align-items:center;gap:10px}
     .lang{height:34px;display:flex;align-items:center;gap:2px;padding:3px;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(255,255,255,.08)}
@@ -59,45 +61,59 @@
     .icon-btn{width:38px;height:38px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);border-radius:999px;color:white;display:none;place-items:center}
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:44px;padding:0 18px;border-radius:999px;text-decoration:none;border:1px solid transparent;font-weight:700;white-space:nowrap}
     .btn i{width:18px;height:18px;flex:0 0 auto}
-    .btn-primary{background:var(--teal);color:#061111;box-shadow:0 18px 45px rgba(9,178,160,.28)}
-    .btn-primary:hover{background:#10ccb8}
+    .btn-primary{background:var(--teal);color:var(--paper);box-shadow:0 18px 45px rgba(181,87,47,.3)}
+    .btn-primary:hover{background:#c8703f}
     .btn-dark{background:var(--ink);color:white}
     .btn-dark:hover{background:#202928}
     .btn-ghost{border-color:rgba(255,255,255,.28);color:white;background:rgba(255,255,255,.06)}
     .btn-light{border-color:var(--line);background:white;color:var(--ink)}
 
-    .hero{position:relative;min-height:90svh;display:flex;align-items:center;overflow:hidden;color:white;background:#0a0e0e}
-    .hero-bg{position:absolute;inset:0;background-image:linear-gradient(90deg,rgba(5,8,8,.94) 0%,rgba(5,8,8,.72) 36%,rgba(5,8,8,.24) 69%,rgba(5,8,8,.58) 100%),linear-gradient(180deg,rgba(5,8,8,.12),#0a0e0e 100%),url("assets/raisa-hero-workflow.png");background-size:cover;background-position:center right;transform:scale(1.02)}
-    .hero::after{content:"";position:absolute;inset:auto 0 0;height:24%;background:linear-gradient(180deg,rgba(10,14,14,0),#0a0e0e)}
+    .hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;color:white;background:#161210;margin-bottom:-1px}
+    .hero-bg{position:absolute;inset:0;background-image:linear-gradient(90deg,rgba(20,16,13,.94) 0%,rgba(20,16,13,.74) 36%,rgba(20,16,13,.28) 69%,rgba(20,16,13,.6) 100%),linear-gradient(180deg,rgba(20,16,13,.14),#161210 100%),url("assets/raisa-hero-warm-window.jpg");background-size:cover;background-position:center;transform:scale(1.02)}
+    .hero::after{content:"";position:absolute;inset:auto 0 0;height:24%;background:linear-gradient(180deg,rgba(22,18,16,0),#161210)}
     .hero-content{position:relative;z-index:2;width:min(1180px,calc(100% - 40px));margin:0 auto;padding:118px 0 54px}
     .eyebrow{display:inline-flex;align-items:center;gap:9px;min-height:32px;padding:0 12px;border:1px solid rgba(255,255,255,.16);border-radius:999px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.8);font-size:13px;margin-bottom:22px}
     .eyebrow i{width:15px;height:15px;color:var(--teal)}
     h1,h2,h3,p{margin:0}
-    .hero h1{max-width:760px;font-family:"Instrument Serif",Georgia,serif;font-size:76px;line-height:.96;font-weight:400;letter-spacing:0;margin-bottom:22px}
-    .hero h1 em{font-style:italic;color:#bdf7ef}
+    .hero h1{max-width:780px;font-family:"Newsreader",Georgia,serif;font-size:84px;line-height:.94;font-weight:500;letter-spacing:-.01em;margin-bottom:22px}
+    .hero h1 em{font-style:italic;color:#f0c9a8}
     .hero-copy{max-width:620px;color:rgba(255,255,255,.78);font-size:20px;line-height:1.55;margin-bottom:30px}
     .hero-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:42px}
     .signal-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:760px}
     .signal{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.08);backdrop-filter:blur(12px);border-radius:8px;padding:14px 16px;min-height:84px}
     .signal b{display:block;color:white;font-size:14px;margin-bottom:4px}
-    .signal span{display:block;color:rgba(255,255,255,.62);font-size:13px;line-height:1.45}
+    .signal span:not(.id):not(.en){display:block;color:rgba(255,255,255,.62);font-size:13px;line-height:1.45}
+    .scroll-cue{display:inline-flex;align-items:center;gap:10px;margin-top:26px;color:rgba(255,255,255,.55);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase}
+    .scroll-cue::before{content:"";width:30px;height:1px;background:rgba(255,255,255,.4)}
 
     section{padding:92px 0}
     .section-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,460px);gap:48px;align-items:end;margin-bottom:38px}
-    .kicker{display:inline-flex;align-items:center;gap:8px;color:var(--teal-2);font-size:13px;font-weight:700;margin-bottom:12px}
-    .kicker i{width:16px;height:16px}
-    h2{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:48px;line-height:1.04;letter-spacing:0}
+    .kicker{display:inline-flex;align-items:center;gap:8px;color:var(--ink-2);font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:14px}
+    .kicker i{width:14px;height:14px;color:var(--muted)}
+    h2{font-family:"Newsreader",Georgia,serif;font-weight:500;font-size:52px;line-height:1.02;letter-spacing:-.01em}
+    h2 em{font-style:italic;color:var(--teal)}
+    .workflow h2 em,.trust-note h2 em,.cta h2 em{color:#f0c9a8}
     .lead{color:var(--muted);font-size:18px;line-height:1.7}
     .pain-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
     .pain{background:white;padding:26px;min-height:210px}
-    .pain i,.feature i,.use-card i,.approval i{width:22px;height:22px;color:var(--teal);margin-bottom:18px}
+    .pain i,.use-card i,.approval i{width:22px;height:22px;color:var(--ink-2);margin-bottom:18px}
+    .feature i{width:22px;height:22px;color:#f0c9a8;margin-bottom:18px}
     .pain h3,.feature h3,.use-card h3,.approval h3{font-size:18px;line-height:1.3;margin-bottom:10px}
     .pain p,.feature p,.use-card p,.approval p,.step p{color:var(--muted);font-size:15px;line-height:1.65}
 
+    .problem-split{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:start}
+    .problem-lead h2{font-size:44px;line-height:1.06}
+    .problem-lead .lead{margin-top:18px;max-width:46ch}
+    .problem-list{display:flex;flex-direction:column;padding-top:6px}
+    .pain-item{padding:22px 0;border-top:1px solid var(--line)}
+    .pain-item:last-child{border-bottom:1px solid var(--line)}
+    .pain-item h3{font-size:17px;margin:0 0 6px;font-weight:700;line-height:1.3}
+    .pain-item p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.6}
+
     .workflow{background:var(--ink);color:white;position:relative;overflow:hidden}
-    .workflow::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(9,178,160,.16),transparent 45%,rgba(255,107,74,.12));pointer-events:none}
+    .workflow::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(181,87,47,.16),transparent 45%,rgba(207,154,74,.1));pointer-events:none}
     .workflow .container{position:relative;z-index:2}
-    .workflow .kicker{color:#8ff0e3}
+    .workflow .kicker{color:#f0c9a8}
     .workflow .lead{color:rgba(255,255,255,.68)}
     .workflow-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:start}
     .agent-panel{border:1px solid rgba(255,255,255,.12);border-radius:8px;background:rgba(255,255,255,.06);box-shadow:0 26px 90px rgba(0,0,0,.32);overflow:hidden}
@@ -107,8 +123,8 @@
     .flow-card{background:white;color:var(--ink);border-radius:8px;padding:16px;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center}
     .flow-card .num{width:34px;height:34px;border-radius:999px;background:var(--paper-2);display:grid;place-items:center;font-weight:800;color:var(--teal-2)}
     .flow-card b{display:block;font-size:14px;margin-bottom:3px}
-    .flow-card span{display:block;color:var(--muted);font-size:13px}
-    .flow-card .status{font-size:12px;border-radius:999px;padding:5px 9px;background:#e9faf6;color:#087d73;font-weight:700}
+    .flow-card span:not(.id):not(.en){display:block;color:var(--muted);font-size:13px}
+    .flow-card .status{font-size:12px;border-radius:999px;padding:5px 9px;background:#f4e6d8;color:#8a4325;font-weight:700}
     .feature-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.13);border-radius:8px;overflow:hidden}
     .feature{background:rgba(255,255,255,.06);padding:24px;min-height:188px}
     .feature p,.feature h3{color:white}.feature p{color:rgba(255,255,255,.66)}
@@ -123,41 +139,50 @@
     .use-card{background:white;border:1px solid var(--line);border-radius:8px;padding:24px;min-height:210px}
     .tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px}
     .tag{display:inline-flex;align-items:center;gap:7px;height:34px;border:1px solid var(--line);border-radius:999px;background:white;padding:0 12px;color:var(--muted);font-size:13px}
-    .tag i{width:15px;height:15px;color:var(--coral)}
+    .tag i{width:15px;height:15px;color:var(--ink-2)}
 
     .trust-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:start}
     .trust-note{background:var(--ink);color:white;border-radius:8px;padding:30px;min-height:100%}
     .trust-note h2{font-size:42px;margin-bottom:18px}
     .trust-note p{color:rgba(255,255,255,.7);font-size:17px}
-    .approval-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
-    .approval{background:white;padding:22px;min-height:164px}
-    .approval i{color:var(--coral)}
+    .approval-list{display:flex;flex-direction:column}
+    .approval-item{display:grid;grid-template-columns:auto 1fr;gap:16px;padding:20px 0;border-top:1px solid var(--line)}
+    .approval-item:last-child{border-bottom:1px solid var(--line)}
+    .approval-item i{width:20px;height:20px;color:var(--ink-2);margin-top:2px}
+    .approval-item h3{font-size:16px;margin:0 0 5px;font-weight:700}
+    .approval-item p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
 
     .integrations{background:white}
     .integrations-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
     .integration{border:1px solid var(--line);border-radius:8px;background:var(--paper);min-height:126px;padding:18px;display:flex;flex-direction:column;justify-content:space-between}
-    .integration i{width:24px;height:24px;color:var(--teal-2)}
+    .integration i{width:24px;height:24px;color:var(--ink-2)}
     .integration b{font-size:15px}
     .metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:34px}
     .metric{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:20px;min-height:132px}
     .metric strong{display:block;font-size:24px;margin-bottom:6px;color:var(--coral)}
-    .metric span{display:block;color:var(--muted);font-size:14px;line-height:1.5}
+    .metric span:not(.id):not(.en){display:block;color:var(--muted);font-size:14px;line-height:1.5}
 
-    .cta{padding:104px 0;background:#071010;color:white;text-align:center;position:relative;overflow:hidden}
-    .cta::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0,rgba(9,178,160,.22),transparent 48%),linear-gradient(135deg,rgba(255,107,74,.12),transparent 42%)}
+    .cta{padding:104px 0;background:#161210;color:white;text-align:center;position:relative;overflow:hidden}
+    .cta::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0,rgba(181,87,47,.22),transparent 48%),linear-gradient(135deg,rgba(207,154,74,.12),transparent 42%)}
     .cta .container{position:relative;z-index:2;width:min(820px,calc(100% - 40px))}
     .cta h2{font-size:56px;margin-bottom:18px}
     .cta p{color:rgba(255,255,255,.72);font-size:19px;line-height:1.65;margin-bottom:28px}
-    footer{background:#071010;color:rgba(255,255,255,.62);border-top:1px solid rgba(255,255,255,.1);padding:28px 0}
+    footer{background:#161210;color:rgba(255,255,255,.62);border-top:1px solid rgba(255,255,255,.1);padding:28px 0}
     .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:14px}
     .footer-links{display:flex;gap:16px}
+
+    .js .section-head,.js .problem-split,.js .workflow-grid,.js .steps,.js .use-grid,.js .trust-wrap,.js .integrations-grid,.js .metrics{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease}
+    .js .section-head.is-visible,.js .problem-split.is-visible,.js .workflow-grid.is-visible,.js .steps.is-visible,.js .use-grid.is-visible,.js .trust-wrap.is-visible,.js .integrations-grid.is-visible,.js .metrics.is-visible{opacity:1;transform:none}
+    @media (prefers-reduced-motion: reduce){
+      .js .section-head,.js .problem-split,.js .workflow-grid,.js .steps,.js .use-grid,.js .trust-wrap,.js .integrations-grid,.js .metrics{transition:none;opacity:1;transform:none}
+    }
 
     @media (max-width:980px){
       .nav-links{display:none}
       .icon-btn{display:grid}
       .hero h1{font-size:58px}
-      .section-head,.workflow-grid,.trust-wrap{grid-template-columns:1fr}
-      .pain-grid,.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .section-head,.workflow-grid,.trust-wrap,.problem-split{grid-template-columns:1fr}
+      .metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
       .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
       .use-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
       .integrations-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -166,14 +191,14 @@
       .container,.hero-content{width:min(100% - 28px,1120px)}
       .nav{height:62px}
       .nav-cta{display:none}
-      .hero{min-height:88svh}
-      .hero-bg{background-image:linear-gradient(90deg,rgba(5,8,8,.94),rgba(5,8,8,.62)),linear-gradient(180deg,rgba(5,8,8,.18),#0a0e0e),url("assets/raisa-hero-workflow.png");background-position:center}
+      .hero{min-height:100svh}
+      .hero-bg{background-image:linear-gradient(90deg,rgba(20,16,13,.94),rgba(20,16,13,.64)),linear-gradient(180deg,rgba(20,16,13,.2),#161210),url("assets/raisa-hero-warm-window.jpg");background-position:center}
       .hero-content{padding:96px 0 38px}
       .hero h1{font-size:46px;line-height:1}
       .hero-copy{font-size:17px}
       .hero-actions{align-items:stretch}
       .hero-actions .btn{width:100%}
-      .signal-row,.pain-grid,.feature-grid,.steps,.use-grid,.approval-grid,.integrations-grid,.metrics{grid-template-columns:1fr}
+      .signal-row,.feature-grid,.steps,.use-grid,.integrations-grid,.metrics{grid-template-columns:1fr}
       section{padding:70px 0}
       h2{font-size:38px}
       .cta h2{font-size:42px}
@@ -227,23 +252,24 @@
           <div class="signal"><b>Outreach</b><span class="id">Draft email, LinkedIn, WhatsApp, dan sequence sesuai tone bisnis.</span><span class="en">Draft email, LinkedIn, WhatsApp, and follow-up sequences in your tone.</span></div>
           <div class="signal"><b>Reporting</b><span class="id">Daily summary, hot lead alerts, dan reminder follow-up ke channel tim.</span><span class="en">Daily summaries, hot lead alerts, and follow-up reminders where teams work.</span></div>
         </div>
+        <div class="scroll-cue"><span class="id">Gulir untuk jelajahi</span><span class="en">Scroll to explore</span></div>
       </div>
     </header>
 
     <section class="problem" id="problem">
       <div class="container">
-        <div class="section-head">
-          <div>
+        <div class="problem-split">
+          <div class="problem-lead">
             <div class="kicker"><i data-lucide="alert-triangle"></i><span class="id">Masalah</span><span class="en">Problem</span></div>
-            <h2><span class="id">Sales team kehilangan deal di celah proses.</span><span class="en">Sales teams lose deals in the gaps.</span></h2>
+            <h2><span class="id">Sales team kehilangan deal di <em>celah proses</em>.</span><span class="en">Sales teams lose deals <em>in the gaps</em>.</span></h2>
+            <p class="lead"><span class="id">Prospek terlewat. Follow-up datang telat. Catatan lead tersebar di spreadsheet, inbox, CRM, dan chat. RAISA memberi sales process working memory dan execution layer supaya tim bergerak lebih cepat tanpa kehilangan konteks.</span><span class="en">Prospects get missed. Follow-ups arrive late. Lead notes live across spreadsheets, inboxes, CRM fields, and chat threads. RAISA gives your sales process a working memory and an execution layer.</span></p>
           </div>
-          <p class="lead"><span class="id">Prospek terlewat. Follow-up datang telat. Catatan lead tersebar di spreadsheet, inbox, CRM, dan chat. RAISA memberi sales process working memory dan execution layer supaya tim bergerak lebih cepat tanpa kehilangan konteks.</span><span class="en">Prospects get missed. Follow-ups arrive late. Lead notes live across spreadsheets, inboxes, CRM fields, and chat threads. RAISA gives your sales process a working memory and an execution layer.</span></p>
-        </div>
-        <div class="pain-grid">
-          <article class="pain"><i data-lucide="search"></i><h3><span class="id">Prospecting terlalu lama</span><span class="en">Prospecting takes too long</span></h3><p><span class="id">Tim menghabiskan jam untuk list building sebelum percakapan pertama dimulai.</span><span class="en">Teams spend hours building lists before the first conversation even starts.</span></p></article>
-          <article class="pain"><i data-lucide="message-square-text"></i><h3><span class="id">Outreach tidak konsisten</span><span class="en">Outreach is inconsistent</span></h3><p><span class="id">Message dan follow-up berubah tergantung siapa yang mengingat.</span><span class="en">Messaging and follow-up discipline change from person to person.</span></p></article>
-          <article class="pain"><i data-lucide="flame"></i><h3><span class="id">Warm lead jadi dingin</span><span class="en">Warm leads go cold</span></h3><p><span class="id">Reply, intent signal, dan next action terkubur di banyak channel.</span><span class="en">Replies, intent signals, and next actions get buried across channels.</span></p></article>
-          <article class="pain"><i data-lucide="bar-chart-3"></i><h3><span class="id">Reporting masih manual</span><span class="en">Reporting is manual</span></h3><p><span class="id">Aktivitas sales baru terlihat setelah seseorang membersihkan data.</span><span class="en">Sales activity is hard to see until someone cleans up the data.</span></p></article>
+          <div class="problem-list">
+            <article class="pain-item"><h3><span class="id">Prospecting terlalu lama</span><span class="en">Prospecting takes too long</span></h3><p><span class="id">Tim menghabiskan jam untuk list building sebelum percakapan pertama dimulai.</span><span class="en">Teams spend hours building lists before the first conversation even starts.</span></p></article>
+            <article class="pain-item"><h3><span class="id">Outreach tidak konsisten</span><span class="en">Outreach is inconsistent</span></h3><p><span class="id">Message dan follow-up berubah tergantung siapa yang mengingat.</span><span class="en">Messaging and follow-up discipline change from person to person.</span></p></article>
+            <article class="pain-item"><h3><span class="id">Warm lead jadi dingin</span><span class="en">Warm leads go cold</span></h3><p><span class="id">Reply, intent signal, dan next action terkubur di banyak channel.</span><span class="en">Replies, intent signals, and next actions get buried across channels.</span></p></article>
+            <article class="pain-item"><h3><span class="id">Reporting masih manual</span><span class="en">Reporting is manual</span></h3><p><span class="id">Aktivitas sales baru terlihat setelah seseorang membersihkan data.</span><span class="en">Sales activity is hard to see until someone cleans up the data.</span></p></article>
+          </div>
         </div>
       </div>
     </section>
@@ -253,7 +279,7 @@
         <div class="section-head">
           <div>
             <div class="kicker"><i data-lucide="workflow"></i><span class="id">Solusi</span><span class="en">Solution</span></div>
-            <h2><span class="id">RAISA adalah sales execution layer untuk tim Anda.</span><span class="en">RAISA is your AI sales execution layer.</span></h2>
+            <h2><span class="id">RAISA adalah <em>sales execution layer</em> untuk tim Anda.</span><span class="en">RAISA is your AI <em>sales execution layer</em>.</span></h2>
           </div>
           <p class="lead"><span class="id">Berikan target customer, offer, tone, dan rules. RAISA membantu menemukan lead, membuat draft message, menjalankan sequence, scoring prospect, dan melaporkan yang perlu perhatian.</span><span class="en">Give RAISA your target customer, offer, tone, and rules. It helps discover leads, draft messages, run follow-ups, score prospects, and report what needs attention.</span></p>
         </div>
@@ -281,7 +307,7 @@
         <div class="section-head">
           <div>
             <div class="kicker"><i data-lucide="route"></i><span class="id">Dari strategi ke workflow</span><span class="en">From strategy to workflow</span></div>
-            <h2><span class="id">Launch sales motion baru tanpa membangun sales ops dari nol.</span><span class="en">Launch a new sales motion without building sales ops from scratch.</span></h2>
+            <h2><span class="id">Launch sales motion baru <em>tanpa membangun sales ops dari nol</em>.</span><span class="en">Launch a new sales motion <em>without building sales ops from scratch</em>.</span></h2>
           </div>
           <p class="lead"><span class="id">RAISA dikonfigurasi untuk cara bisnis Anda menjual. Bukan bot generik, bukan tool yang mengirim pesan berisiko tanpa approval.</span><span class="en">RAISA is configured around how your business sells. Not a generic bot, and not a tool that sends risky messages without approval.</span></p>
         </div>
@@ -300,7 +326,7 @@
         <div class="section-head">
           <div>
             <div class="kicker"><i data-lucide="briefcase-business"></i><span class="id">Use case</span><span class="en">Use cases</span></div>
-            <h2><span class="id">Dibangun untuk banyak jenis sales team.</span><span class="en">Built for many kinds of sales teams.</span></h2>
+            <h2><span class="id">Dibangun untuk <em>banyak jenis</em> sales team.</span><span class="en">Built for <em>many kinds</em> of sales teams.</span></h2>
           </div>
           <p class="lead"><span class="id">RAISA menyesuaikan market, customer profile, tone, dan sales motion. Pakai untuk enterprise outreach, local acquisition, agency lead gen, SaaS prospecting, partnership, atau follow-up operation.</span><span class="en">RAISA adapts to your market, customer profile, tone, and sales motion. Use it for enterprise outreach, local acquisition, agency lead generation, SaaS prospecting, partnerships, or follow-up operations.</span></p>
         </div>
@@ -320,14 +346,14 @@
         <div class="trust-wrap">
           <div class="trust-note">
             <div class="kicker"><i data-lucide="shield-check"></i><span class="id">Human control</span><span class="en">Human control</span></div>
-            <h2><span class="id">Automation where it helps. Human judgment where it matters.</span><span class="en">Automation where it helps. Human judgment where it matters.</span></h2>
+            <h2><span class="id">Automation where it helps. <em>Human judgment</em> where it matters.</span><span class="en">Automation where it helps. <em>Human judgment</em> where it matters.</span></h2>
             <p><span class="id">RAISA mengerjakan repetisi, tapi tidak menggantikan judgment. Tim Anda menentukan rule, approval, dan batasan commercial conversation.</span><span class="en">RAISA handles repetitive sales work, but it does not replace judgment. Your team sets the rules, approvals, and commercial boundaries.</span></p>
           </div>
-          <div class="approval-grid">
-            <article class="approval"><i data-lucide="badge-dollar-sign"></i><h3><span class="id">Pricing & terms</span><span class="en">Pricing & terms</span></h3><p><span class="id">Commercial term, discount, dan commitment tetap masuk approval manusia.</span><span class="en">Commercial terms, discounts, and commitments still go through human approval.</span></p></article>
-            <article class="approval"><i data-lucide="file-signature"></i><h3><span class="id">Contracts</span><span class="en">Contracts</span></h3><p><span class="id">Dokumen legal dan agreement tidak ditangani otomatis tanpa review.</span><span class="en">Legal documents and agreements are not handled automatically without review.</span></p></article>
-            <article class="approval"><i data-lucide="calendar-days"></i><h3><span class="id">Meeting bookings</span><span class="en">Meeting bookings</span></h3><p><span class="id">Meeting penting dapat diminta approval sebelum dikonfirmasi.</span><span class="en">Important meetings can require approval before confirmation.</span></p></article>
-            <article class="approval"><i data-lucide="message-circle-warning"></i><h3><span class="id">Sensitive replies</span><span class="en">Sensitive replies</span></h3><p><span class="id">Komplain, negative response, dan do-not-contact prospect masuk jalur aman.</span><span class="en">Complaints, negative responses, and do-not-contact prospects follow a safer path.</span></p></article>
+          <div class="approval-list">
+            <article class="approval-item"><i data-lucide="badge-dollar-sign"></i><div><h3><span class="id">Pricing & terms</span><span class="en">Pricing & terms</span></h3><p><span class="id">Commercial term, discount, dan commitment tetap masuk approval manusia.</span><span class="en">Commercial terms, discounts, and commitments still go through human approval.</span></p></div></article>
+            <article class="approval-item"><i data-lucide="file-signature"></i><div><h3><span class="id">Contracts</span><span class="en">Contracts</span></h3><p><span class="id">Dokumen legal dan agreement tidak ditangani otomatis tanpa review.</span><span class="en">Legal documents and agreements are not handled automatically without review.</span></p></div></article>
+            <article class="approval-item"><i data-lucide="calendar-days"></i><div><h3><span class="id">Meeting bookings</span><span class="en">Meeting bookings</span></h3><p><span class="id">Meeting penting dapat diminta approval sebelum dikonfirmasi.</span><span class="en">Important meetings can require approval before confirmation.</span></p></div></article>
+            <article class="approval-item"><i data-lucide="message-circle-warning"></i><div><h3><span class="id">Sensitive replies</span><span class="en">Sensitive replies</span></h3><p><span class="id">Komplain, negative response, dan do-not-contact prospect masuk jalur aman.</span><span class="en">Complaints, negative responses, and do-not-contact prospects follow a safer path.</span></p></div></article>
           </div>
         </div>
       </div>
@@ -338,7 +364,7 @@
         <div class="section-head">
           <div>
             <div class="kicker"><i data-lucide="plug-zap"></i><span class="id">Integrasi</span><span class="en">Integrations</span></div>
-            <h2><span class="id">Bekerja dengan tool yang sales team sudah pakai.</span><span class="en">Works with the tools your sales team already uses.</span></h2>
+            <h2><span class="id">Bekerja dengan tool yang <em>sales team sudah pakai</em>.</span><span class="en">Works with the tools your sales team <em>already uses</em>.</span></h2>
           </div>
           <p class="lead"><span class="id">Integrasi disusun sesuai workflow yang dibutuhkan: orchestration, approval, prospecting, enrichment, CRM sync, dan follow-up channel. Tidak semua perlu dipasang di hari pertama.</span><span class="en">Integrations are configured around the workflow: orchestration, approvals, prospecting, enrichment, CRM sync, and follow-up channels. Not everything has to ship on day one.</span></p>
         </div>
@@ -361,7 +387,7 @@
 
     <section class="cta" id="demo">
       <div class="container">
-        <h2><span class="id">Siap memasang AI ke sales workflow?</span><span class="en">Ready to put AI into your sales workflow?</span></h2>
+        <h2><span class="id">Siap memasang <em>AI</em> ke sales workflow?</span><span class="en">Ready to put <em>AI</em> into your sales workflow?</span></h2>
         <p><span class="id">Ceritakan siapa target customer Anda, bagaimana tim follow-up hari ini, dan di mana proses sales sering stuck. etalas akan map workflow RAISA untuk prospecting, outreach, reporting, dan approval flow.</span><span class="en">Tell us who you sell to, how your team follows up today, and where sales gets stuck. etalas will map how RAISA can support prospecting, outreach, reporting, and approval flow.</span></p>
         <a class="btn btn-primary" href="https://wa.me/62811297339?text=Hi%20etalas%2C%20saya%20mau%20map%20sales%20workflow%20untuk%20RAISA." target="_blank" rel="noopener"><i data-lucide="messages-square"></i><span class="id">Map Sales Workflow Saya</span><span class="en">Map My Sales Workflow</span></a>
       </div>
@@ -389,6 +415,24 @@
     langButtons.forEach(btn=>btn.addEventListener("click",()=>setLang(btn.dataset.setLang)));
     document.querySelector("[data-menu]").addEventListener("click",()=>document.querySelector("#workflow").scrollIntoView({behavior:"smooth"}));
     window.addEventListener("load",()=>{ if(window.lucide){ lucide.createIcons(); } });
+
+    const navEl=document.querySelector(".nav");
+    function onNavScroll(){ navEl.classList.toggle("scrolled",window.scrollY>8); }
+    onNavScroll();
+    window.addEventListener("scroll",onNavScroll,{passive:true});
+
+    const revealEls=[...document.querySelectorAll(".section-head,.problem-split,.workflow-grid,.steps,.use-grid,.trust-wrap,.integrations-grid,.metrics")];
+    const reduceMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if(reduceMotion || !("IntersectionObserver" in window)){
+      revealEls.forEach(el=>el.classList.add("is-visible"));
+    } else {
+      const io=new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){ entry.target.classList.add("is-visible"); io.unobserve(entry.target); }
+        });
+      },{threshold:.15,rootMargin:"0px 0px -8% 0px"});
+      revealEls.forEach(el=>io.observe(el));
+    }
   </script>
 </body>
 </html>
