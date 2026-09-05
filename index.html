@@ -134,9 +134,27 @@
     .cta .container{position:relative;z-index:2;width:min(820px,calc(100% - 40px))}
     .cta h2{font-size:56px;margin-bottom:18px}
     .cta p{color:rgba(255,255,255,.72);font-size:19px;line-height:1.65;margin-bottom:28px}
-    footer{background:#161210;color:rgba(255,255,255,.62);border-top:1px solid rgba(255,255,255,.1);padding:28px 0}
-    .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:14px}
-    .footer-links{display:flex;gap:16px}
+    footer{background:#161210;color:rgba(255,255,255,.62);border-top:1px solid rgba(255,255,255,.1);padding:64px 0 0}
+    .footer-grid{display:grid;grid-template-columns:1.3fr .8fr .9fr;gap:40px;padding-bottom:48px}
+    .footer-brand{display:flex;flex-direction:column;gap:14px;max-width:340px}
+    .footer-brand .brand{color:white}
+    .footer-brand p{font-size:14px;line-height:1.65;color:rgba(255,255,255,.55)}
+    .footer-col{display:flex;flex-direction:column;gap:14px}
+    .footer-col h4{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);font-weight:600;margin:0}
+    .footer-col a{font-size:14.5px;color:rgba(255,255,255,.72);text-decoration:none}
+    .footer-col a:hover{color:white}
+    .footer-contact{display:flex;align-items:center;gap:8px}
+    .footer-contact i{width:16px;height:16px;flex:0 0 auto;color:rgba(255,255,255,.5)}
+    .footer-social{display:flex;gap:10px;margin-top:2px}
+    .footer-social a{width:34px;height:34px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);display:grid;place-items:center;font-size:11px;font-weight:700}
+    .footer-social a:hover{color:white;border-color:rgba(255,255,255,.32)}
+    .footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:13px;padding:22px 0;border-top:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5)}
+    .footer-meta{display:flex;align-items:center;gap:14px}
+    .footer-meta>span{padding-right:14px;border-right:1px solid rgba(255,255,255,.15)}
+    .footer-powered{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,.5);text-decoration:none}
+    .footer-powered:hover{color:white}
+    .footer-powered-logo{height:13px;width:auto;filter:invert(1);opacity:.7}
+    .footer-powered:hover .footer-powered-logo{opacity:1}
 
     .js .section-head,.js .problem-split,.js .solution-body,.js .integrations-grid{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease}
     .js .section-head.is-visible,.js .problem-split.is-visible,.js .solution-body.is-visible,.js .integrations-grid.is-visible{opacity:1;transform:none}
@@ -159,6 +177,8 @@
       .section-head,.problem-split{grid-template-columns:1fr}
       .control-grid{grid-template-columns:1fr}
       .integrations-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .footer-grid{grid-template-columns:1fr 1fr}
+      .footer-brand{grid-column:1/-1;max-width:none}
     }
     @media (max-width:680px){
       .container,.hero-content{width:min(100% - 28px,1120px)}
@@ -175,7 +195,9 @@
       section{padding:70px 0}
       h2{font-size:38px}
       .cta h2{font-size:42px}
-      .footer-inner{flex-direction:column;align-items:flex-start}
+      .footer-grid{grid-template-columns:1fr;gap:32px}
+      .footer-brand{grid-column:auto}
+      .footer-bottom{flex-direction:column;align-items:flex-start;gap:10px}
     }
   </style>
 </head>
@@ -305,11 +327,38 @@
   </main>
 
   <footer>
-    <div class="container footer-inner">
-      <div>RAISA by etalas studio. Built on OpenClaw.</div>
-      <div class="footer-links">
-        <a href="https://etalas.com" target="_blank" rel="noopener">etalas.com</a>
-        <a href="https://wa.me/62811297339" target="_blank" rel="noopener">WhatsApp</a>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="#top" aria-label="RAISA home">
+          <span class="brand-mark"><i data-lucide="radar"></i></span>
+          <span>RAISA</span>
+        </a>
+        <p><span class="id">AI sales agent yang membantu tim menemukan prospek, menulis outreach, dan follow-up — dengan manusia tetap pegang kendali di momen penting.</span><span class="en">An AI sales agent that helps teams find prospects, write outreach, and follow up — with humans still in control where it matters.</span></p>
+      </div>
+      <div class="footer-col">
+        <h4><span class="id">Produk</span><span class="en">Product</span></h4>
+        <a href="#solution"><span class="id">Solusi</span><span class="en">Solution</span></a>
+        <a href="#integrations"><span class="id">Integrasi</span><span class="en">Integrations</span></a>
+        <a href="https://wa.me/62811297339" data-wa data-msg-id="Hi etalas, saya mau book demo RAISA." data-msg-en="Hi etalas, I'd like to book a RAISA demo." target="_blank" rel="noopener">Book Demo</a>
+      </div>
+      <div class="footer-col">
+        <h4><span class="id">Kontak</span><span class="en">Contact</span></h4>
+        <a class="footer-contact" href="mailto:hello@etalas.com"><i data-lucide="mail"></i>hello@etalas.com</a>
+        <a class="footer-contact" href="https://wa.me/62811297339" data-wa data-msg-id="Hi etalas, saya mau tanya soal RAISA." data-msg-en="Hi etalas, I have a question about RAISA." target="_blank" rel="noopener"><i data-lucide="message-circle"></i><span class="id">Hubungi Kami</span><span class="en">Contact Us</span></a>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/etalas.id/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+          <a href="https://www.linkedin.com/company/etalas/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <div><span class="id">© 2026 RAISA. Seluruh hak cipta dilindungi.</span><span class="en">© 2026 RAISA. All rights reserved.</span></div>
+      <div class="footer-meta">
+        <span><span class="id">Dibangun di atas OpenClaw</span><span class="en">Built on OpenClaw</span></span>
+        <a href="https://etalas.com" target="_blank" rel="noopener" class="footer-powered">
+          <span><span class="id">Didukung oleh</span><span class="en">Powered by</span></span>
+          <img src="assets/etalas-logo.png" alt="etalas" class="footer-powered-logo">
+        </a>
       </div>
     </div>
   </footer>
