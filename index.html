@@ -179,6 +179,14 @@
 
     @media (max-width:980px){
       .nav-links{display:none}
+      .nav.nav-open{background:#161210;border-bottom-color:rgba(255,255,255,.12)}
+      .nav.nav-open .nav-links{
+        display:flex;flex-direction:column;align-items:stretch;gap:0;
+        position:absolute;top:100%;left:0;right:0;
+        background:#161210;border-bottom:1px solid rgba(255,255,255,.12);
+        padding:4px 20px 16px;
+      }
+      .nav.nav-open .nav-links a{padding:14px 0;border-top:1px solid rgba(255,255,255,.1)}
       .icon-btn{display:grid}
       .hero h1{font-size:58px}
       .section-head,.workflow-grid,.trust-wrap,.problem-split{grid-template-columns:1fr}
@@ -213,8 +221,8 @@
         <span class="brand-mark"><i data-lucide="radar"></i></span>
         <span>RAISA</span>
       </a>
-      <div class="nav-links">
-        <a href="#workflow"><span class="id">Cara Kerja</span><span class="en">How It Works</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="#how"><span class="id">Cara Kerja</span><span class="en">How It Works</span></a>
         <a href="#usecases"><span class="id">Use Case</span><span class="en">Use Cases</span></a>
         <a href="#integrations"><span class="id">Integrasi</span><span class="en">Integrations</span></a>
         <a href="#trust"><span class="id">Kontrol</span><span class="en">Control</span></a>
@@ -224,11 +232,11 @@
           <button type="button" class="active" data-set-lang="id">ID</button>
           <button type="button" data-set-lang="en">EN</button>
         </div>
-        <a class="btn btn-primary nav-cta" href="https://wa.me/62811297339?text=Hi%20etalas%2C%20saya%20mau%20book%20demo%20RAISA." target="_blank" rel="noopener">
+        <a class="btn btn-primary nav-cta" href="https://wa.me/62811297339" data-wa data-msg-id="Hi etalas, saya mau book demo RAISA." data-msg-en="Hi etalas, I'd like to book a RAISA demo." target="_blank" rel="noopener">
           <i data-lucide="calendar-check"></i>
           <span class="id">Book Demo</span><span class="en">Book Demo</span>
         </a>
-        <button class="icon-btn" type="button" aria-label="Open menu" data-menu><i data-lucide="menu"></i></button>
+        <button class="icon-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks" data-menu><i data-lucide="menu"></i></button>
       </div>
     </div>
   </nav>
@@ -244,8 +252,8 @@
           <span class="en">RAISA helps your team find prospects, write outreach, follow up, and report pipeline activity using an AI sales agent that keeps humans in control where it matters.</span>
         </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="https://wa.me/62811297339?text=Hi%20etalas%2C%20saya%20mau%20book%20demo%20RAISA." target="_blank" rel="noopener"><i data-lucide="calendar-check"></i><span class="id">Book Demo RAISA</span><span class="en">Book a RAISA Demo</span></a>
-          <a class="btn btn-ghost" href="#workflow"><i data-lucide="play-circle"></i><span class="id">Lihat Cara Kerja</span><span class="en">See How It Works</span></a>
+          <a class="btn btn-primary" href="https://wa.me/62811297339" data-wa data-msg-id="Hi etalas, saya mau book demo RAISA." data-msg-en="Hi etalas, I'd like to book a RAISA demo." target="_blank" rel="noopener"><i data-lucide="calendar-check"></i><span class="id">Book Demo RAISA</span><span class="en">Book a RAISA Demo</span></a>
+          <a class="btn btn-ghost" href="#how"><i data-lucide="play-circle"></i><span class="id">Lihat Cara Kerja</span><span class="en">See How It Works</span></a>
         </div>
         <div class="signal-row" aria-label="RAISA capabilities">
           <div class="signal"><b>Prospecting</b><span class="id">Bangun daftar prospek dari ICP, industri, jabatan, dan buying signal.</span><span class="en">Build lead lists from ICP, industry, role, and buying signals.</span></div>
@@ -287,9 +295,9 @@
           <div class="agent-panel" aria-label="RAISA workflow preview">
             <div class="panel-top"><div class="dots"><span></span><span></span><span></span></div><span>RAISA Sales Workflow</span></div>
             <div class="agent-body">
-              <div class="flow-card"><div class="num">1</div><div><b><span class="id">Target profile masuk</span><span class="en">Target profile received</span></b><span><span class="id">Industry, role, geography, company size, signal.</span><span class="en">Industry, role, geography, company size, signal.</span></span></div><span class="status">Ready</span></div>
-              <div class="flow-card"><div class="num">2</div><div><b><span class="id">Outreach draft dibuat</span><span class="en">Outreach draft generated</span></b><span><span class="id">Email, LinkedIn, WhatsApp, follow-up sequence.</span><span class="en">Email, LinkedIn, WhatsApp, follow-up sequence.</span></span></div><span class="status">Review</span></div>
-              <div class="flow-card"><div class="num">3</div><div><b><span class="id">Hot lead dilaporkan</span><span class="en">Hot lead reported</span></b><span><span class="id">Summary, approval request, next action.</span><span class="en">Summary, approval request, next action.</span></span></div><span class="status">Human</span></div>
+              <div class="flow-card"><div class="num">1</div><div><b><span class="id">Target profile masuk</span><span class="en">Target profile received</span></b><span><span class="id">Industri, role, lokasi, company size, signal.</span><span class="en">Industry, role, geography, company size, signal.</span></span></div><span class="status">Ready</span></div>
+              <div class="flow-card"><div class="num">2</div><div><b><span class="id">Outreach draft dibuat</span><span class="en">Outreach draft generated</span></b><span><span class="id">Email, LinkedIn, WhatsApp, sequence follow-up.</span><span class="en">Email, LinkedIn, WhatsApp, follow-up sequence.</span></span></div><span class="status">Review</span></div>
+              <div class="flow-card"><div class="num">3</div><div><b><span class="id">Hot lead dilaporkan</span><span class="en">Hot lead reported</span></b><span><span class="id">Ringkasan, permintaan approval, next action.</span><span class="en">Summary, approval request, next action.</span></span></div><span class="status">Human</span></div>
             </div>
           </div>
           <div class="feature-grid">
@@ -345,8 +353,8 @@
       <div class="container">
         <div class="trust-wrap">
           <div class="trust-note">
-            <div class="kicker"><i data-lucide="shield-check"></i><span class="id">Human control</span><span class="en">Human control</span></div>
-            <h2><span class="id">Automation where it helps. <em>Human judgment</em> where it matters.</span><span class="en">Automation where it helps. <em>Human judgment</em> where it matters.</span></h2>
+            <div class="kicker"><i data-lucide="shield-check"></i><span class="id">Kontrol manusia</span><span class="en">Human control</span></div>
+            <h2><span class="id">Otomatisasi untuk yang bisa dibantu. <em>Keputusan manusia</em> untuk yang penting.</span><span class="en">Automation where it helps. <em>Human judgment</em> where it matters.</span></h2>
             <p><span class="id">RAISA mengerjakan repetisi, tapi tidak menggantikan judgment. Tim Anda menentukan rule, approval, dan batasan commercial conversation.</span><span class="en">RAISA handles repetitive sales work, but it does not replace judgment. Your team sets the rules, approvals, and commercial boundaries.</span></p>
           </div>
           <div class="approval-list">
@@ -389,7 +397,7 @@
       <div class="container">
         <h2><span class="id">Siap memasang <em>AI</em> ke sales workflow?</span><span class="en">Ready to put <em>AI</em> into your sales workflow?</span></h2>
         <p><span class="id">Ceritakan siapa target customer Anda, bagaimana tim follow-up hari ini, dan di mana proses sales sering stuck. etalas akan map workflow RAISA untuk prospecting, outreach, reporting, dan approval flow.</span><span class="en">Tell us who you sell to, how your team follows up today, and where sales gets stuck. etalas will map how RAISA can support prospecting, outreach, reporting, and approval flow.</span></p>
-        <a class="btn btn-primary" href="https://wa.me/62811297339?text=Hi%20etalas%2C%20saya%20mau%20map%20sales%20workflow%20untuk%20RAISA." target="_blank" rel="noopener"><i data-lucide="messages-square"></i><span class="id">Map Sales Workflow Saya</span><span class="en">Map My Sales Workflow</span></a>
+        <a class="btn btn-primary" href="https://wa.me/62811297339" data-wa data-msg-id="Hi etalas, saya mau map sales workflow untuk RAISA." data-msg-en="Hi etalas, I'd like to map a sales workflow for RAISA." target="_blank" rel="noopener"><i data-lucide="messages-square"></i><span class="id">Map Sales Workflow Saya</span><span class="en">Map My Sales Workflow</span></a>
       </div>
     </section>
   </main>
@@ -407,19 +415,38 @@
   <script>
     const root=document.documentElement;
     const langButtons=[...document.querySelectorAll("[data-set-lang]")];
+    const waLinks=[...document.querySelectorAll("[data-wa]")];
+    function updateWaLinks(lang){
+      waLinks.forEach(a=>{
+        const msg=lang==="en"?a.dataset.msgEn:a.dataset.msgId;
+        a.href="https://wa.me/62811297339?text="+encodeURIComponent(msg);
+      });
+    }
     function setLang(lang){
       root.dataset.lang=lang;
       root.lang=lang;
       langButtons.forEach(btn=>btn.classList.toggle("active",btn.dataset.setLang===lang));
+      updateWaLinks(lang);
     }
     langButtons.forEach(btn=>btn.addEventListener("click",()=>setLang(btn.dataset.setLang)));
-    document.querySelector("[data-menu]").addEventListener("click",()=>document.querySelector("#workflow").scrollIntoView({behavior:"smooth"}));
+    updateWaLinks(root.dataset.lang||"id");
     window.addEventListener("load",()=>{ if(window.lucide){ lucide.createIcons(); } });
 
     const navEl=document.querySelector(".nav");
     function onNavScroll(){ navEl.classList.toggle("scrolled",window.scrollY>8); }
     onNavScroll();
     window.addEventListener("scroll",onNavScroll,{passive:true});
+
+    const menuBtn=document.querySelector("[data-menu]");
+    function setMenuOpen(open){
+      navEl.classList.toggle("nav-open",open);
+      menuBtn.setAttribute("aria-expanded",String(open));
+      menuBtn.setAttribute("aria-label",open?"Close menu":"Open menu");
+      menuBtn.querySelector("[data-lucide]").setAttribute("data-lucide",open?"x":"menu");
+      if(window.lucide){ lucide.createIcons(); }
+    }
+    menuBtn.addEventListener("click",()=>setMenuOpen(!navEl.classList.contains("nav-open")));
+    document.querySelectorAll("#navLinks a").forEach(a=>a.addEventListener("click",()=>setMenuOpen(false)));
 
     const revealEls=[...document.querySelectorAll(".section-head,.problem-split,.workflow-grid,.steps,.use-grid,.trust-wrap,.integrations-grid,.metrics")];
     const reduceMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
