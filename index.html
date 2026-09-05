@@ -27,13 +27,9 @@
       --muted:#6b6153;
       --line:#e4dbc9;
       --paper:#f4efe4;
-      --paper-2:#ece2ce;
       --white:#ffffff;
       --teal:#b5572f;
       --teal-2:#8a4325;
-      --coral:#b5572f;
-      --amber:#cf9a4a;
-      --green:#8a9a72;
       --shadow:0 24px 80px rgba(28,25,22,.14);
     }
     html{scroll-behavior:smooth}
@@ -92,14 +88,13 @@
     .kicker i{width:14px;height:14px;color:var(--muted)}
     h2{font-family:"Newsreader",Georgia,serif;font-weight:500;font-size:52px;line-height:1.02;letter-spacing:-.01em}
     h2 em{font-style:italic;color:var(--teal)}
-    .workflow h2 em,.trust-note h2 em,.cta h2 em{color:#f0c9a8}
+    .workflow h2 em,.cta h2 em{color:#f0c9a8}
     .lead{color:var(--muted);font-size:18px;line-height:1.7}
     .pain-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
     .pain{background:white;padding:26px;min-height:210px}
-    .pain i,.use-card i,.approval i{width:22px;height:22px;color:var(--ink-2);margin-bottom:18px}
-    .feature i{width:22px;height:22px;color:#f0c9a8;margin-bottom:18px}
-    .pain h3,.feature h3,.use-card h3,.approval h3{font-size:18px;line-height:1.3;margin-bottom:10px}
-    .pain p,.feature p,.use-card p,.approval p,.step p{color:var(--muted);font-size:15px;line-height:1.65}
+    .pain i{width:22px;height:22px;color:var(--ink-2);margin-bottom:18px}
+    .pain h3{font-size:18px;line-height:1.3;margin-bottom:10px}
+    .pain p{color:var(--muted);font-size:15px;line-height:1.65}
 
     .problem-split{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:start}
     .problem-lead h2{font-size:44px;line-height:1.06}
@@ -115,52 +110,24 @@
     .workflow .container{position:relative;z-index:2}
     .workflow .kicker{color:#f0c9a8}
     .workflow .lead{color:rgba(255,255,255,.68)}
-    .workflow-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:start}
-    .agent-panel{border:1px solid rgba(255,255,255,.12);border-radius:8px;background:rgba(255,255,255,.06);box-shadow:0 26px 90px rgba(0,0,0,.32);overflow:hidden}
-    .panel-top{height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-bottom:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.65);font-size:13px}
-    .dots{display:flex;gap:7px}.dots span{width:9px;height:9px;border-radius:999px;background:var(--coral)}.dots span:nth-child(2){background:var(--amber)}.dots span:nth-child(3){background:var(--green)}
-    .agent-body{padding:18px;display:grid;gap:12px}
-    .flow-card{background:white;color:var(--ink);border-radius:8px;padding:16px;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center}
-    .flow-card .num{width:34px;height:34px;border-radius:999px;background:var(--paper-2);display:grid;place-items:center;font-weight:800;color:var(--teal-2)}
-    .flow-card b{display:block;font-size:14px;margin-bottom:3px}
-    .flow-card span:not(.id):not(.en){display:block;color:var(--muted);font-size:13px}
-    .flow-card .status{font-size:12px;border-radius:999px;padding:5px 9px;background:#f4e6d8;color:#8a4325;font-weight:700}
-    .feature-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.13);border-radius:8px;overflow:hidden}
-    .feature{background:rgba(255,255,255,.06);padding:24px;min-height:188px}
-    .feature p,.feature h3{color:white}.feature p{color:rgba(255,255,255,.66)}
-
-    .steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
-    .step{background:white;padding:22px;min-height:220px}
-    .step-num{width:34px;height:34px;border-radius:999px;background:var(--ink);color:white;display:grid;place-items:center;font-weight:800;margin-bottom:18px}
-    .step h3{font-size:17px;line-height:1.3;margin-bottom:9px}
-
-    .usecases{background:var(--paper-2)}
-    .use-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-    .use-card{background:white;border:1px solid var(--line);border-radius:8px;padding:24px;min-height:210px}
-    .tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px}
-    .tag{display:inline-flex;align-items:center;gap:7px;height:34px;border:1px solid var(--line);border-radius:999px;background:white;padding:0 12px;color:var(--muted);font-size:13px}
-    .tag i{width:15px;height:15px;color:var(--ink-2)}
-
-    .trust-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:start}
-    .trust-note{background:var(--ink);color:white;border-radius:8px;padding:30px;min-height:100%}
-    .trust-note h2{font-size:42px;margin-bottom:18px}
-    .trust-note p{color:rgba(255,255,255,.7);font-size:17px}
-    .approval-list{display:flex;flex-direction:column}
-    .approval-item{display:grid;grid-template-columns:auto 1fr;gap:16px;padding:20px 0;border-top:1px solid var(--line)}
-    .approval-item:last-child{border-bottom:1px solid var(--line)}
-    .approval-item i{width:20px;height:20px;color:var(--ink-2);margin-top:2px}
-    .approval-item h3{font-size:16px;margin:0 0 5px;font-weight:700}
-    .approval-item p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
+    .solution-body{display:flex;flex-direction:column}
+    .control-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.13);border-radius:8px;overflow:hidden}
+    .control-col{padding:26px 28px}
+    .control-col.raisa{background:rgba(255,255,255,.06)}
+    .control-col:not(.raisa){background:white}
+    .control-col h3{display:flex;align-items:center;gap:8px;font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin:0 0 16px;color:#f0c9a8}
+    .control-col h3 i{width:15px;height:15px}
+    .control-col:not(.raisa) h3{color:var(--teal-2)}
+    .control-list{display:flex;flex-direction:column}
+    .control-item{padding:11px 0;border-top:1px solid rgba(255,255,255,.1);font-size:14.5px;color:rgba(255,255,255,.82)}
+    .control-col:not(.raisa) .control-item{border-top-color:var(--line);color:var(--ink-2)}
+    .control-item:first-child{border-top:none;padding-top:0}
 
     .integrations{background:white}
-    .integrations-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+    .integrations-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
     .integration{border:1px solid var(--line);border-radius:8px;background:var(--paper);min-height:126px;padding:18px;display:flex;flex-direction:column;justify-content:space-between}
-    .integration i{width:24px;height:24px;color:var(--ink-2)}
+    .integration-glyph{width:28px;height:28px;border-radius:8px;background:white;border:1px solid var(--line);display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--teal-2)}
     .integration b{font-size:15px}
-    .metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:34px}
-    .metric{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:20px;min-height:132px}
-    .metric strong{display:block;font-size:24px;margin-bottom:6px;color:var(--coral)}
-    .metric span:not(.id):not(.en){display:block;color:var(--muted);font-size:14px;line-height:1.5}
 
     .cta{padding:104px 0;background:#161210;color:white;text-align:center;position:relative;overflow:hidden}
     .cta::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0,rgba(181,87,47,.22),transparent 48%),linear-gradient(135deg,rgba(207,154,74,.12),transparent 42%)}
@@ -171,10 +138,10 @@
     .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:14px}
     .footer-links{display:flex;gap:16px}
 
-    .js .section-head,.js .problem-split,.js .workflow-grid,.js .steps,.js .use-grid,.js .trust-wrap,.js .integrations-grid,.js .metrics{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease}
-    .js .section-head.is-visible,.js .problem-split.is-visible,.js .workflow-grid.is-visible,.js .steps.is-visible,.js .use-grid.is-visible,.js .trust-wrap.is-visible,.js .integrations-grid.is-visible,.js .metrics.is-visible{opacity:1;transform:none}
+    .js .section-head,.js .problem-split,.js .solution-body,.js .integrations-grid{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease}
+    .js .section-head.is-visible,.js .problem-split.is-visible,.js .solution-body.is-visible,.js .integrations-grid.is-visible{opacity:1;transform:none}
     @media (prefers-reduced-motion: reduce){
-      .js .section-head,.js .problem-split,.js .workflow-grid,.js .steps,.js .use-grid,.js .trust-wrap,.js .integrations-grid,.js .metrics{transition:none;opacity:1;transform:none}
+      .js .section-head,.js .problem-split,.js .solution-body,.js .integrations-grid{transition:none;opacity:1;transform:none}
     }
 
     @media (max-width:980px){
@@ -189,11 +156,9 @@
       .nav.nav-open .nav-links a{padding:14px 0;border-top:1px solid rgba(255,255,255,.1)}
       .icon-btn{display:grid}
       .hero h1{font-size:58px}
-      .section-head,.workflow-grid,.trust-wrap,.problem-split{grid-template-columns:1fr}
-      .metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .use-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .integrations-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .section-head,.problem-split{grid-template-columns:1fr}
+      .control-grid{grid-template-columns:1fr}
+      .integrations-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
     }
     @media (max-width:680px){
       .container,.hero-content{width:min(100% - 28px,1120px)}
@@ -206,7 +171,7 @@
       .hero-copy{font-size:17px}
       .hero-actions{align-items:stretch}
       .hero-actions .btn{width:100%}
-      .signal-row,.feature-grid,.steps,.use-grid,.integrations-grid,.metrics{grid-template-columns:1fr}
+      .signal-row,.integrations-grid{grid-template-columns:1fr}
       section{padding:70px 0}
       h2{font-size:38px}
       .cta h2{font-size:42px}
@@ -222,10 +187,8 @@
         <span>RAISA</span>
       </a>
       <div class="nav-links" id="navLinks">
-        <a href="#how"><span class="id">Cara Kerja</span><span class="en">How It Works</span></a>
-        <a href="#usecases"><span class="id">Use Case</span><span class="en">Use Cases</span></a>
+        <a href="#solution"><span class="id">Solusi</span><span class="en">Solution</span></a>
         <a href="#integrations"><span class="id">Integrasi</span><span class="en">Integrations</span></a>
-        <a href="#trust"><span class="id">Kontrol</span><span class="en">Control</span></a>
       </div>
       <div class="nav-actions">
         <div class="lang" aria-label="Language switcher">
@@ -253,7 +216,7 @@
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="https://wa.me/62811297339" data-wa data-msg-id="Hi etalas, saya mau book demo RAISA." data-msg-en="Hi etalas, I'd like to book a RAISA demo." target="_blank" rel="noopener"><i data-lucide="calendar-check"></i><span class="id">Book Demo RAISA</span><span class="en">Book a RAISA Demo</span></a>
-          <a class="btn btn-ghost" href="#how"><i data-lucide="play-circle"></i><span class="id">Lihat Cara Kerja</span><span class="en">See How It Works</span></a>
+          <a class="btn btn-ghost" href="#solution"><i data-lucide="play-circle"></i><span class="id">Lihat Cara Kerja</span><span class="en">See How It Works</span></a>
         </div>
         <div class="signal-row" aria-label="RAISA capabilities">
           <div class="signal"><b>Prospecting</b><span class="id">Bangun daftar prospek dari ICP, industri, jabatan, dan buying signal.</span><span class="en">Build lead lists from ICP, industry, role, and buying signals.</span></div>
@@ -282,86 +245,33 @@
       </div>
     </section>
 
-    <section class="workflow" id="workflow">
+    <section class="workflow" id="solution">
       <div class="container">
         <div class="section-head">
           <div>
             <div class="kicker"><i data-lucide="workflow"></i><span class="id">Solusi</span><span class="en">Solution</span></div>
-            <h2><span class="id">RAISA adalah <em>sales execution layer</em> untuk tim Anda.</span><span class="en">RAISA is your AI <em>sales execution layer</em>.</span></h2>
-          </div>
-          <p class="lead"><span class="id">Berikan target customer, offer, tone, dan rules. RAISA membantu menemukan lead, membuat draft message, menjalankan sequence, scoring prospect, dan melaporkan yang perlu perhatian.</span><span class="en">Give RAISA your target customer, offer, tone, and rules. It helps discover leads, draft messages, run follow-ups, score prospects, and report what needs attention.</span></p>
-        </div>
-        <div class="workflow-grid">
-          <div class="agent-panel" aria-label="RAISA workflow preview">
-            <div class="panel-top"><div class="dots"><span></span><span></span><span></span></div><span>RAISA Sales Workflow</span></div>
-            <div class="agent-body">
-              <div class="flow-card"><div class="num">1</div><div><b><span class="id">Target profile masuk</span><span class="en">Target profile received</span></b><span><span class="id">Industri, role, lokasi, company size, signal.</span><span class="en">Industry, role, geography, company size, signal.</span></span></div><span class="status">Ready</span></div>
-              <div class="flow-card"><div class="num">2</div><div><b><span class="id">Outreach draft dibuat</span><span class="en">Outreach draft generated</span></b><span><span class="id">Email, LinkedIn, WhatsApp, sequence follow-up.</span><span class="en">Email, LinkedIn, WhatsApp, follow-up sequence.</span></span></div><span class="status">Review</span></div>
-              <div class="flow-card"><div class="num">3</div><div><b><span class="id">Hot lead dilaporkan</span><span class="en">Hot lead reported</span></b><span><span class="id">Ringkasan, permintaan approval, next action.</span><span class="en">Summary, approval request, next action.</span></span></div><span class="status">Human</span></div>
-            </div>
-          </div>
-          <div class="feature-grid">
-            <article class="feature"><i data-lucide="list-plus"></i><h3><span class="id">Lead discovery</span><span class="en">Lead discovery</span></h3><p><span class="id">Bangun prospect list dari kriteria customer, role, industri, lokasi, company size, dan buying signal.</span><span class="en">Build prospect lists from customer criteria, role, industry, geography, company size, and buying signals.</span></p></article>
-            <article class="feature"><i data-lucide="pen-line"></i><h3><span class="id">Outreach generation</span><span class="en">Outreach generation</span></h3><p><span class="id">Draft cold email, LinkedIn message, WhatsApp copy, ad copy, dan follow-up dalam brand voice.</span><span class="en">Draft cold emails, LinkedIn messages, WhatsApp copy, ad copy, and follow-ups in your brand voice.</span></p></article>
-            <article class="feature"><i data-lucide="git-branch"></i><h3><span class="id">Sales sequencing</span><span class="en">Sales sequencing</span></h3><p><span class="id">Jaga setiap prospect bergerak ke next action dengan flow follow-up terstruktur.</span><span class="en">Keep every prospect moving through the right next action with structured follow-up flows.</span></p></article>
-            <article class="feature"><i data-lucide="activity"></i><h3><span class="id">Lead scoring</span><span class="en">Lead scoring</span></h3><p><span class="id">Rank opportunity berdasarkan fit, context, engagement, dan buying signal.</span><span class="en">Rank opportunities by fit, context, engagement, and buying signals.</span></p></article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="how">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <div class="kicker"><i data-lucide="route"></i><span class="id">Dari strategi ke workflow</span><span class="en">From strategy to workflow</span></div>
-            <h2><span class="id">Launch sales motion baru <em>tanpa membangun sales ops dari nol</em>.</span><span class="en">Launch a new sales motion <em>without building sales ops from scratch</em>.</span></h2>
-          </div>
-          <p class="lead"><span class="id">RAISA dikonfigurasi untuk cara bisnis Anda menjual. Bukan bot generik, bukan tool yang mengirim pesan berisiko tanpa approval.</span><span class="en">RAISA is configured around how your business sells. Not a generic bot, and not a tool that sends risky messages without approval.</span></p>
-        </div>
-        <div class="steps">
-          <article class="step"><div class="step-num">1</div><h3><span class="id">Define target</span><span class="en">Define target</span></h3><p><span class="id">Siapa customer, apa offer, channel apa, dan tone apa yang cocok.</span><span class="en">Who you sell to, what you offer, which channels you use, and what tone fits.</span></p></article>
-          <article class="step"><div class="step-num">2</div><h3><span class="id">Connect tools</span><span class="en">Connect tools</span></h3><p><span class="id">Mulai dari Slack, LinkedIn, Apollo, CRM, email, atau WhatsApp workflow.</span><span class="en">Start with Slack, LinkedIn, Apollo, CRM, email, or WhatsApp workflows.</span></p></article>
-          <article class="step"><div class="step-num">3</div><h3><span class="id">Launch outreach</span><span class="en">Launch outreach</span></h3><p><span class="id">RAISA bantu cari lead, tulis copy, sequence follow-up, dan track status.</span><span class="en">RAISA helps find leads, write copy, sequence follow-ups, and track status.</span></p></article>
-          <article class="step"><div class="step-num">4</div><h3><span class="id">Review moments</span><span class="en">Review moments</span></h3><p><span class="id">Tim approve sensitive actions dan handle conversation yang butuh judgment.</span><span class="en">Your team approves sensitive actions and handles conversations that need judgment.</span></p></article>
-          <article class="step"><div class="step-num">5</div><h3><span class="id">Improve cycle</span><span class="en">Improve cycle</span></h3><p><span class="id">RAISA report hasilnya, ingat yang bekerja, dan bantu refine campaign berikutnya.</span><span class="en">RAISA reports what happened, remembers what worked, and refines the next campaign.</span></p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="usecases" id="usecases">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <div class="kicker"><i data-lucide="briefcase-business"></i><span class="id">Use case</span><span class="en">Use cases</span></div>
-            <h2><span class="id">Dibangun untuk <em>banyak jenis</em> sales team.</span><span class="en">Built for <em>many kinds</em> of sales teams.</span></h2>
-          </div>
-          <p class="lead"><span class="id">RAISA menyesuaikan market, customer profile, tone, dan sales motion. Pakai untuk enterprise outreach, local acquisition, agency lead gen, SaaS prospecting, partnership, atau follow-up operation.</span><span class="en">RAISA adapts to your market, customer profile, tone, and sales motion. Use it for enterprise outreach, local acquisition, agency lead generation, SaaS prospecting, partnerships, or follow-up operations.</span></p>
-        </div>
-        <div class="use-grid">
-          <article class="use-card"><i data-lucide="building-2"></i><h3>B2B services</h3><p><span class="id">Cari decision maker, draft consultative outreach, dan dorong discovery call.</span><span class="en">Find decision makers, draft consultative outreach, and book discovery calls.</span></p></article>
-          <article class="use-card"><i data-lucide="megaphone"></i><h3>Agencies</h3><p><span class="id">Ubah target segment menjadi outbound campaign berulang dengan daily lead report.</span><span class="en">Turn target segments into repeatable outbound campaigns with daily lead reporting.</span></p></article>
-          <article class="use-card"><i data-lucide="store"></i><h3>SMEs</h3><p><span class="id">Ubah social audience dan WhatsApp conversation menjadi follow-up yang rapi.</span><span class="en">Convert social audiences and WhatsApp conversations into structured follow-up.</span></p></article>
-          <article class="use-card"><i data-lucide="landmark"></i><h3>Enterprise</h3><p><span class="id">Jaga account context, track high-value prospect, dan surface warm opportunity.</span><span class="en">Preserve account context, track high-value prospects, and surface warm opportunities.</span></p></article>
-          <article class="use-card"><i data-lucide="box"></i><h3>SaaS</h3><p><span class="id">Run targeted outbound by role, industry, company size, dan product pain point.</span><span class="en">Run targeted outbound by role, industry, company size, and product pain point.</span></p></article>
-          <article class="use-card"><i data-lucide="handshake"></i><h3>Partnerships</h3><p><span class="id">Map calon partner, draft warm intro, dan follow up opportunity yang bergerak.</span><span class="en">Map partner targets, draft warm intros, and follow up active opportunities.</span></p></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="trust">
-      <div class="container">
-        <div class="trust-wrap">
-          <div class="trust-note">
-            <div class="kicker"><i data-lucide="shield-check"></i><span class="id">Kontrol manusia</span><span class="en">Human control</span></div>
             <h2><span class="id">Otomatisasi untuk yang bisa dibantu. <em>Keputusan manusia</em> untuk yang penting.</span><span class="en">Automation where it helps. <em>Human judgment</em> where it matters.</span></h2>
-            <p><span class="id">RAISA mengerjakan repetisi, tapi tidak menggantikan judgment. Tim Anda menentukan rule, approval, dan batasan commercial conversation.</span><span class="en">RAISA handles repetitive sales work, but it does not replace judgment. Your team sets the rules, approvals, and commercial boundaries.</span></p>
           </div>
-          <div class="approval-list">
-            <article class="approval-item"><i data-lucide="badge-dollar-sign"></i><div><h3><span class="id">Pricing & terms</span><span class="en">Pricing & terms</span></h3><p><span class="id">Commercial term, discount, dan commitment tetap masuk approval manusia.</span><span class="en">Commercial terms, discounts, and commitments still go through human approval.</span></p></div></article>
-            <article class="approval-item"><i data-lucide="file-signature"></i><div><h3><span class="id">Contracts</span><span class="en">Contracts</span></h3><p><span class="id">Dokumen legal dan agreement tidak ditangani otomatis tanpa review.</span><span class="en">Legal documents and agreements are not handled automatically without review.</span></p></div></article>
-            <article class="approval-item"><i data-lucide="calendar-days"></i><div><h3><span class="id">Meeting bookings</span><span class="en">Meeting bookings</span></h3><p><span class="id">Meeting penting dapat diminta approval sebelum dikonfirmasi.</span><span class="en">Important meetings can require approval before confirmation.</span></p></div></article>
-            <article class="approval-item"><i data-lucide="message-circle-warning"></i><div><h3><span class="id">Sensitive replies</span><span class="en">Sensitive replies</span></h3><p><span class="id">Komplain, negative response, dan do-not-contact prospect masuk jalur aman.</span><span class="en">Complaints, negative responses, and do-not-contact prospects follow a safer path.</span></p></div></article>
+          <p class="lead"><span class="id">Berikan target customer, offer, tone, dan rules. RAISA membantu menemukan lead, membuat draft message, menjalankan sequence, scoring prospect, dan melaporkan yang perlu perhatian — tim Anda tetap memegang keputusan yang penting.</span><span class="en">Give RAISA your target customer, offer, tone, and rules. It helps discover leads, draft messages, run sequences, score prospects, and report what needs attention — your team still holds the decisions that matter.</span></p>
+        </div>
+        <div class="solution-body">
+          <div class="control-grid">
+            <div class="control-col raisa">
+              <h3><i data-lucide="sparkles"></i><span class="id">RAISA menangani</span><span class="en">RAISA handles</span></h3>
+              <div class="control-list">
+                <div class="control-item">Prospecting &amp; list building</div>
+                <div class="control-item">Outreach drafts &amp; follow-ups</div>
+                <div class="control-item">Lead scoring &amp; reporting</div>
+                <div class="control-item">Routine scheduling</div>
+              </div>
+            </div>
+            <div class="control-col">
+              <h3><i data-lucide="check-check"></i><span class="id">Tim Anda menyetujui</span><span class="en">You approve</span></h3>
+              <div class="control-list">
+                <div class="control-item">Message drafts — email, LinkedIn, WhatsApp, ad copy</div>
+                <div class="control-item">Connection requests — before RAISA reaches out</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -374,21 +284,13 @@
             <div class="kicker"><i data-lucide="plug-zap"></i><span class="id">Integrasi</span><span class="en">Integrations</span></div>
             <h2><span class="id">Bekerja dengan tool yang <em>sales team sudah pakai</em>.</span><span class="en">Works with the tools your sales team <em>already uses</em>.</span></h2>
           </div>
-          <p class="lead"><span class="id">Integrasi disusun sesuai workflow yang dibutuhkan: orchestration, approval, prospecting, enrichment, CRM sync, dan follow-up channel. Tidak semua perlu dipasang di hari pertama.</span><span class="en">Integrations are configured around the workflow: orchestration, approvals, prospecting, enrichment, CRM sync, and follow-up channels. Not everything has to ship on day one.</span></p>
+          <p class="lead" style="margin-bottom:0"><span class="id">Tidak perlu tool baru. RAISA bekerja lewat Slack, LinkedIn, Apollo, dan WhatsApp — channel yang tim sales Anda sudah pakai setiap hari.</span><span class="en">No new tools required. RAISA works through Slack, LinkedIn, Apollo, and WhatsApp — the channels your sales team already uses every day.</span></p>
         </div>
         <div class="integrations-grid">
-          <div class="integration"><i data-lucide="network"></i><b>OpenClaw</b></div>
-          <div class="integration"><i data-lucide="slack"></i><b>Slack</b></div>
-          <div class="integration"><i data-lucide="linkedin"></i><b>LinkedIn</b></div>
-          <div class="integration"><i data-lucide="database-zap"></i><b>Apollo</b></div>
-          <div class="integration"><i data-lucide="panel-top"></i><b>CRM</b></div>
-          <div class="integration"><i data-lucide="send"></i><b>Email & WhatsApp</b></div>
-        </div>
-        <div class="metrics" aria-label="Operating targets">
-          <div class="metric"><strong>Replies</strong><span><span class="id">Track response by audience dan channel.</span><span class="en">Track campaign response by audience and channel.</span></span></div>
-          <div class="metric"><strong>Calls</strong><span><span class="id">Ukur qualified conversation yang tercipta tiap minggu.</span><span class="en">Measure qualified conversations created each week.</span></span></div>
-          <div class="metric"><strong>Launch</strong><span><span class="id">Ubah sales motion menjadi workflow berjalan lebih cepat.</span><span class="en">Turn a new sales motion into a running workflow quickly.</span></span></div>
-          <div class="metric"><strong>Follow-up</strong><span><span class="id">Jaga sequence tetap jalan tanpa spreadsheet chasing.</span><span class="en">Keep sequences moving without manual spreadsheet chasing.</span></span></div>
+          <div class="integration"><div class="integration-glyph">S</div><b>Slack</b></div>
+          <div class="integration"><div class="integration-glyph">in</div><b>LinkedIn</b></div>
+          <div class="integration"><div class="integration-glyph">A</div><b>Apollo</b></div>
+          <div class="integration"><div class="integration-glyph">W</div><b>WhatsApp</b></div>
         </div>
       </div>
     </section>
@@ -448,7 +350,7 @@
     menuBtn.addEventListener("click",()=>setMenuOpen(!navEl.classList.contains("nav-open")));
     document.querySelectorAll("#navLinks a").forEach(a=>a.addEventListener("click",()=>setMenuOpen(false)));
 
-    const revealEls=[...document.querySelectorAll(".section-head,.problem-split,.workflow-grid,.steps,.use-grid,.trust-wrap,.integrations-grid,.metrics")];
+    const revealEls=[...document.querySelectorAll(".section-head,.problem-split,.solution-body,.integrations-grid")];
     const reduceMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if(reduceMotion || !("IntersectionObserver" in window)){
       revealEls.forEach(el=>el.classList.add("is-visible"));
