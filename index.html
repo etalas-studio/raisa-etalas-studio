@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RAISA — AI Sales for Any Business</title>
   <meta name="description" content="RAISA helps teams find prospects, write outreach, follow up, and report pipeline activity with an AI sales agent built on OpenClaw.">
-  <meta name="theme-color" content="#161210">
+  <meta name="theme-color" content="#0a0a0a">
   <script>document.documentElement.classList.add('js')</script>
   <link rel="canonical" href="https://raisa.etalas.studio/">
   <meta property="og:type" content="website">
@@ -17,400 +17,1120 @@
   <meta name="twitter:image" content="https://raisa.etalas.studio/assets/raisa-hero-warm-window.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,500;1,400&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    *,*::before,*::after{box-sizing:border-box}
-    :root{
-      --ink:#1c1916;
-      --ink-2:#463c30;
-      --muted:#6b6153;
-      --line:#e4dbc9;
-      --paper:#f4efe4;
-      --white:#ffffff;
-      --teal:#b5572f;
-      --teal-2:#8a4325;
-      --shadow:0 24px 80px rgba(28,25,22,.14);
-    }
-    html{scroll-behavior:smooth}
-    body{margin:0;background:var(--paper);color:var(--ink);font-family:"Public Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:16px;line-height:1.6}
-    body.lock{overflow:hidden}
-    a{color:inherit}
-    img{max-width:100%;display:block}
-    .en,[data-lang="en"] .id{display:none}
-    [data-lang="en"] .en{display:initial}
-    [data-lang="en"] .id{display:none}
-    .container{width:min(1120px,calc(100% - 40px));margin:0 auto}
-    .nav{position:fixed;z-index:50;top:0;left:0;right:0;height:68px;display:flex;align-items:center;border-bottom:1px solid transparent;background:transparent;color:white;transition:background-color .35s ease,border-color .35s ease,backdrop-filter .35s ease}
-    .nav.scrolled{border-bottom-color:rgba(255,255,255,.12);background:rgba(22,18,16,.55);backdrop-filter:blur(18px)}
-    .nav-inner{width:min(1180px,calc(100% - 32px));margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px}
-    .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700}
-    .brand-mark{width:30px;height:30px;border-radius:8px;background:var(--teal);display:grid;place-items:center;box-shadow:0 10px 30px rgba(181,87,47,.32)}
-    .brand-mark i{width:18px;height:18px}
-    .brand span{font-size:18px}
-    .nav-links{display:flex;align-items:center;gap:22px;color:rgba(255,255,255,.78);font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:500}
-    .nav-links a{text-decoration:none}
-    .nav-actions{display:flex;align-items:center;gap:10px}
-    .lang{height:34px;display:flex;align-items:center;gap:2px;padding:3px;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(255,255,255,.08)}
-    .lang button{border:0;background:transparent;color:rgba(255,255,255,.62);height:26px;padding:0 10px;border-radius:999px;font:inherit;font-size:12px;cursor:pointer}
-    .lang button.active{background:white;color:var(--ink)}
-    .icon-btn{width:38px;height:38px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);border-radius:999px;color:white;display:none;place-items:center}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:44px;padding:0 18px;border-radius:999px;text-decoration:none;border:1px solid transparent;font-weight:700;white-space:nowrap}
-    .btn i{width:18px;height:18px;flex:0 0 auto}
-    .btn-primary{background:var(--teal);color:var(--paper);box-shadow:0 18px 45px rgba(181,87,47,.3)}
-    .btn-primary:hover{background:#c8703f}
-    .btn-dark{background:var(--ink);color:white}
-    .btn-dark:hover{background:#202928}
-    .btn-ghost{border-color:rgba(255,255,255,.28);color:white;background:rgba(255,255,255,.06)}
-    .btn-light{border-color:var(--line);background:white;color:var(--ink)}
-
-    .hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;color:white;background:#161210;margin-bottom:-1px}
-    .hero-bg{position:absolute;inset:0;background-image:linear-gradient(90deg,rgba(20,16,13,.94) 0%,rgba(20,16,13,.74) 36%,rgba(20,16,13,.28) 69%,rgba(20,16,13,.6) 100%),linear-gradient(180deg,rgba(20,16,13,.14),#161210 100%),url("assets/raisa-hero-warm-window.jpg");background-size:cover;background-position:center;transform:scale(1.02)}
-    .hero::after{content:"";position:absolute;inset:auto 0 0;height:24%;background:linear-gradient(180deg,rgba(22,18,16,0),#161210)}
-    .hero-content{position:relative;z-index:2;width:min(1180px,calc(100% - 40px));margin:0 auto;padding:118px 0 54px}
-    .eyebrow{display:inline-flex;align-items:center;gap:9px;min-height:32px;padding:0 12px;border:1px solid rgba(255,255,255,.16);border-radius:999px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.8);font-size:13px;margin-bottom:22px}
-    .eyebrow i{width:15px;height:15px;color:var(--teal)}
-    h1,h2,h3,p{margin:0}
-    .hero h1{max-width:780px;font-family:"Newsreader",Georgia,serif;font-size:84px;line-height:.94;font-weight:500;letter-spacing:-.01em;margin-bottom:22px}
-    .hero h1 em{font-style:italic;color:#f0c9a8}
-    .hero-copy{max-width:620px;color:rgba(255,255,255,.78);font-size:20px;line-height:1.55;margin-bottom:30px}
-    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:42px}
-    .signal-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:760px}
-    .signal{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.08);backdrop-filter:blur(12px);border-radius:8px;padding:14px 16px;min-height:84px}
-    .signal b{display:block;color:white;font-size:14px;margin-bottom:4px}
-    .signal span:not(.id):not(.en){display:block;color:rgba(255,255,255,.62);font-size:13px;line-height:1.45}
-    .scroll-cue{display:inline-flex;align-items:center;gap:10px;margin-top:26px;color:rgba(255,255,255,.55);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase}
-    .scroll-cue::before{content:"";width:30px;height:1px;background:rgba(255,255,255,.4)}
-
-    section{padding:92px 0}
-    .section-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,460px);gap:48px;align-items:end;margin-bottom:38px}
-    .kicker{display:inline-flex;align-items:center;gap:8px;color:var(--ink-2);font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:14px}
-    .kicker i{width:14px;height:14px;color:var(--muted)}
-    h2{font-family:"Newsreader",Georgia,serif;font-weight:500;font-size:52px;line-height:1.02;letter-spacing:-.01em}
-    h2 em{font-style:italic;color:var(--teal)}
-    .workflow h2 em,.cta h2 em{color:#f0c9a8}
-    .lead{color:var(--muted);font-size:18px;line-height:1.7}
-    .pain-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
-    .pain{background:white;padding:26px;min-height:210px}
-    .pain i{width:22px;height:22px;color:var(--ink-2);margin-bottom:18px}
-    .pain h3{font-size:18px;line-height:1.3;margin-bottom:10px}
-    .pain p{color:var(--muted);font-size:15px;line-height:1.65}
-
-    .problem-split{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:start}
-    .problem-lead h2{font-size:44px;line-height:1.06}
-    .problem-lead .lead{margin-top:18px;max-width:46ch}
-    .problem-list{display:flex;flex-direction:column;padding-top:6px}
-    .pain-item{padding:22px 0;border-top:1px solid var(--line)}
-    .pain-item:last-child{border-bottom:1px solid var(--line)}
-    .pain-item h3{font-size:17px;margin:0 0 6px;font-weight:700;line-height:1.3}
-    .pain-item p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.6}
-
-    .workflow{background:var(--ink);color:white;position:relative;overflow:hidden}
-    .workflow::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(181,87,47,.16),transparent 45%,rgba(207,154,74,.1));pointer-events:none}
-    .workflow .container{position:relative;z-index:2}
-    .workflow .kicker{color:#f0c9a8}
-    .workflow .lead{color:rgba(255,255,255,.68)}
-    .solution-body{display:flex;flex-direction:column}
-    .control-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.13);border-radius:8px;overflow:hidden}
-    .control-col{padding:26px 28px}
-    .control-col.raisa{background:rgba(255,255,255,.06)}
-    .control-col:not(.raisa){background:white}
-    .control-col h3{display:flex;align-items:center;gap:8px;font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin:0 0 16px;color:#f0c9a8}
-    .control-col h3 i{width:15px;height:15px}
-    .control-col:not(.raisa) h3{color:var(--teal-2)}
-    .control-list{display:flex;flex-direction:column}
-    .control-item{padding:11px 0;border-top:1px solid rgba(255,255,255,.1);font-size:14.5px;color:rgba(255,255,255,.82)}
-    .control-col:not(.raisa) .control-item{border-top-color:var(--line);color:var(--ink-2)}
-    .control-item:first-child{border-top:none;padding-top:0}
-
-    .integrations{background:white}
-    .integrations-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
-    .integration{border:1px solid var(--line);border-radius:8px;background:var(--paper);min-height:126px;padding:18px;display:flex;flex-direction:column;justify-content:space-between}
-    .integration-glyph{width:28px;height:28px;border-radius:8px;background:white;border:1px solid var(--line);display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--teal-2)}
-    .integration b{font-size:15px}
-
-    .cta{padding:104px 0;background:#161210;color:white;text-align:center;position:relative;overflow:hidden}
-    .cta::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0,rgba(181,87,47,.22),transparent 48%),linear-gradient(135deg,rgba(207,154,74,.12),transparent 42%)}
-    .cta .container{position:relative;z-index:2;width:min(820px,calc(100% - 40px))}
-    .cta h2{font-size:56px;margin-bottom:18px}
-    .cta p{color:rgba(255,255,255,.72);font-size:19px;line-height:1.65;margin-bottom:28px}
-    footer{background:#161210;color:rgba(255,255,255,.62);border-top:1px solid rgba(255,255,255,.1);padding:64px 0 0}
-    .footer-grid{display:grid;grid-template-columns:1.3fr .8fr .9fr;gap:40px;padding-bottom:48px}
-    .footer-brand{display:flex;flex-direction:column;gap:14px;max-width:340px}
-    .footer-brand .brand{color:white}
-    .footer-brand p{font-size:14px;line-height:1.65;color:rgba(255,255,255,.55)}
-    .footer-col{display:flex;flex-direction:column;gap:14px}
-    .footer-col h4{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);font-weight:600;margin:0}
-    .footer-col a{font-size:14.5px;color:rgba(255,255,255,.72);text-decoration:none}
-    .footer-col a:hover{color:white}
-    .footer-contact{display:flex;align-items:center;gap:8px}
-    .footer-contact i{width:16px;height:16px;flex:0 0 auto;color:rgba(255,255,255,.5)}
-    .footer-social{display:flex;gap:10px;margin-top:2px}
-    .footer-social a{width:34px;height:34px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);display:grid;place-items:center;font-size:11px;font-weight:700}
-    .footer-social a:hover{color:white;border-color:rgba(255,255,255,.32)}
-    .footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:13px;padding:22px 0;border-top:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5)}
-    .footer-meta{display:flex;align-items:center;gap:14px}
-    .footer-meta>span{padding-right:14px;border-right:1px solid rgba(255,255,255,.15)}
-    .footer-powered{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,.5);text-decoration:none}
-    .footer-powered:hover{color:white}
-    .footer-powered-logo{height:13px;width:auto;filter:invert(1);opacity:.7}
-    .footer-powered:hover .footer-powered-logo{opacity:1}
-
-    .js .section-head,.js .problem-split,.js .solution-body,.js .integrations-grid{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease}
-    .js .section-head.is-visible,.js .problem-split.is-visible,.js .solution-body.is-visible,.js .integrations-grid.is-visible{opacity:1;transform:none}
-    @media (prefers-reduced-motion: reduce){
-      .js .section-head,.js .problem-split,.js .solution-body,.js .integrations-grid{transition:none;opacity:1;transform:none}
+    @keyframes fadeSlideIn {
+      0%   { opacity: 0; transform: translateY(30px); filter: blur(8px); }
+      100% { opacity: 1; transform: translateY(0);    filter: blur(0px); }
     }
 
-    @media (max-width:980px){
-      .nav-links{display:none}
-      .nav.nav-open{background:#161210;border-bottom-color:rgba(255,255,255,.12)}
-      .nav.nav-open .nav-links{
-        display:flex;flex-direction:column;align-items:stretch;gap:0;
-        position:absolute;top:100%;left:0;right:0;
-        background:#161210;border-bottom:1px solid rgba(255,255,255,.12);
-        padding:4px 20px 16px;
-      }
-      .nav.nav-open .nav-links a{padding:14px 0;border-top:1px solid rgba(255,255,255,.1)}
-      .icon-btn{display:grid}
-      .hero h1{font-size:58px}
-      .section-head,.problem-split{grid-template-columns:1fr}
-      .control-grid{grid-template-columns:1fr}
-      .integrations-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .footer-grid{grid-template-columns:1fr 1fr}
-      .footer-brand{grid-column:1/-1;max-width:none}
+    .border-gradient { position: relative; }
+    .border-gradient::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      background: linear-gradient(225deg, rgba(255,255,255,0.0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.0) 100%);
+      pointer-events: none;
     }
-    @media (max-width:680px){
-      .container,.hero-content{width:min(100% - 28px,1120px)}
-      .nav{height:62px}
-      .nav-cta{display:none}
-      .hero{min-height:100svh}
-      .hero-bg{background-image:linear-gradient(90deg,rgba(20,16,13,.94),rgba(20,16,13,.64)),linear-gradient(180deg,rgba(20,16,13,.2),#161210),url("assets/raisa-hero-warm-window.jpg");background-position:center}
-      .hero-content{padding:96px 0 38px}
-      .hero h1{font-size:46px;line-height:1}
-      .hero-copy{font-size:17px}
-      .hero-actions{align-items:stretch}
-      .hero-actions .btn{width:100%}
-      .signal-row,.integrations-grid{grid-template-columns:1fr}
-      section{padding:70px 0}
-      h2{font-size:38px}
-      .cta h2{font-size:42px}
-      .footer-grid{grid-template-columns:1fr;gap:32px}
-      .footer-brand{grid-column:auto}
-      .footer-bottom{flex-direction:column;align-items:flex-start;gap:10px}
+
+    /* animate-on-scroll */
+    .animate-on-scroll { animation-play-state: paused !important; }
+    .animate-on-scroll.animate { animation-play-state: running !important; }
+
+    /* Marquee */
+    @keyframes marquee-ltr {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
     }
+    @keyframes marquee-rtl {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track { animation: none !important; }
+    }
+
+    /* Lang */
+    .en { display: none; }
+    [data-lang="en"] .id { display: none; }
+    [data-lang="en"] .en { display: revert; }
+
+    .lang-btn {
+      height: 26px; padding: 0 10px; border-radius: 999px;
+      font-size: 12px; cursor: pointer; border: 0; background: transparent;
+      color: rgba(255,255,255,.5); font-family: inherit; font-weight: 500;
+      transition: all .2s;
+    }
+    .lang-btn.active { background: rgba(255,255,255,.12); color: white; }
+
+    html { scroll-behavior: smooth; }
   </style>
+  <script>
+    (function () {
+      const style = document.createElement("style");
+      style.textContent = `.animate-on-scroll{animation-play-state:paused!important}.animate-on-scroll.animate{animation-play-state:running!important}`;
+      document.head.appendChild(style);
+      if (!window.__inViewIO) {
+        window.__inViewIO = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) { e.target.classList.add("animate"); window.__inViewIO.unobserve(e.target); }
+          });
+        }, { threshold: 0.1, rootMargin: "0px 0px -8% 0px" });
+      }
+      window.initInViewAnimations = function (sel) {
+        document.querySelectorAll(sel || ".animate-on-scroll").forEach((el) => window.__inViewIO.observe(el));
+      };
+      document.addEventListener("DOMContentLoaded", () => initInViewAnimations());
+    })();
+  </script>
 </head>
-<body>
-  <nav class="nav" aria-label="Primary navigation">
-    <div class="nav-inner">
-      <a class="brand" href="#top" aria-label="RAISA home">
-        <span class="brand-mark"><i data-lucide="radar"></i></span>
-        <span>RAISA</span>
+<body class="min-h-screen bg-neutral-950 text-white antialiased" style="font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;">
+
+<!-- Animated shader background -->
+<div class="aura-background-component top-0 w-full h-screen z-0 brightness-50 saturate-50 fixed blur-sm" data-alpha-mask="80" style="; mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent)"><div class="fixed inset-0 -z-10 bg-black">
+  <div class="aura-background-component absolute inset-0 w-full h-full" data-alpha-mask="80" style="
+      -webkit-mask-image: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 80%, rgba(255,255,255,0) 100%);
+              mask-image: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 80%, rgba(255,255,255,0) 100%);
+      -webkit-mask-repeat: no-repeat;
+              mask-repeat: no-repeat;
+      -webkit-mask-size: 100% 100%;
+              mask-size: 100% 100%;
+    ">
+    <div data-us-project="XxCmD31vVBmiINgvYCho" class="absolute inset-0 w-full h-full bg-neutral-950">
+    </div>
+    <script type="text/javascript">
+      !function () {
+        if (!window.UnicornStudio) {
+          window.UnicornStudio = { isInitialized: !1 };
+          var i = document.createElement("script");
+          i.src = "https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js",
+          i.onload = function () {
+            window.UnicornStudio.isInitialized || (UnicornStudio.init(), window.UnicornStudio.isInitialized = !0)
+          },
+          (document.head || document.body).appendChild(i)
+        }
+      }();
+    </script>
+  </div>
+</div></div>
+
+<!-- Fixed grid background -->
+<div class="fixed inset-0 -z-10 pointer-events-none">
+  <div class="absolute inset-0 opacity-[0.03]">
+    <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+          <path d="M64 0H0v64" fill="none" stroke="white" stroke-width="0.5"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid)"/>
+    </svg>
+  </div>
+</div>
+
+<!-- Header / Nav -->
+<header class="fixed z-50 top-0 left-0 right-0 transition-all duration-300" id="nav" aria-label="Primary navigation">
+  <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between">
+
+    <a class="flex items-center gap-2.5 text-white no-underline" href="#top" aria-label="RAISA home">
+      <span class="inline-flex items-center justify-center bg-white/10 w-9 h-9 rounded-full backdrop-blur border-gradient" style="border-radius:9999px;">
+        <i data-lucide="radar" style="width:16px;height:16px;color:white"></i>
+      </span>
+      <span class="text-lg font-semibold tracking-tight">RAISA</span>
+    </a>
+
+    <div class="hidden md:flex items-center gap-8 text-sm text-neutral-300" id="navLinks">
+      <a class="hover:text-white transition-colors font-medium" href="#solution"><span class="id">Solusi</span><span class="en">Solution</span></a>
+      <a class="hover:text-white transition-colors font-medium" href="#integrations"><span class="id">Integrasi</span><span class="en">Integrations</span></a>
+      <a class="hover:text-white transition-colors font-medium" href="#demo"><span class="id">Demo</span><span class="en">Demo</span></a>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <div class="hidden sm:flex items-center gap-2 rounded-full border-gradient bg-white/5 px-3 py-1.5" style="border-radius:9999px;">
+        <span class="h-2 w-2 rounded-full bg-blue-400"></span>
+        <span class="text-xs text-neutral-300 font-medium">OpenClaw</span>
+      </div>
+
+      <div class="flex items-center gap-0.5 rounded-full border-gradient bg-white/5 p-1" style="border-radius:9999px;" aria-label="Language switcher">
+        <button type="button" class="lang-btn active" data-set-lang="id">ID</button>
+        <button type="button" class="lang-btn" data-set-lang="en">EN</button>
+      </div>
+
+      <a class="hidden sm:inline-flex items-center gap-2 rounded-full border-gradient bg-white/5 backdrop-blur-xl px-4 py-2.5 text-sm font-medium text-white/80 hover:text-white transition-all hover:-translate-y-0.5 no-underline"
+         style="border-radius:9999px;"
+         href="https://wa.me/62811297339"
+         data-wa data-msg-id="Hi etalas, saya mau book demo RAISA." data-msg-en="Hi etalas, I'd like to book a RAISA demo."
+         target="_blank" rel="noopener">
+        <span class="id">Book Demo</span><span class="en">Book Demo</span>
+        <i data-lucide="arrow-right" style="width:14px;height:14px"></i>
       </a>
-      <div class="nav-links" id="navLinks">
-        <a href="#solution"><span class="id">Solusi</span><span class="en">Solution</span></a>
-        <a href="#integrations"><span class="id">Integrasi</span><span class="en">Integrations</span></a>
-      </div>
-      <div class="nav-actions">
-        <div class="lang" aria-label="Language switcher">
-          <button type="button" class="active" data-set-lang="id">ID</button>
-          <button type="button" data-set-lang="en">EN</button>
-        </div>
-        <a class="btn btn-primary nav-cta" href="https://wa.me/62811297339" data-wa data-msg-id="Hi etalas, saya mau book demo RAISA." data-msg-en="Hi etalas, I'd like to book a RAISA demo." target="_blank" rel="noopener">
-          <i data-lucide="calendar-check"></i>
-          <span class="id">Book Demo</span><span class="en">Book Demo</span>
-        </a>
-        <button class="icon-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks" data-menu><i data-lucide="menu"></i></button>
-      </div>
+
+      <button class="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-full border-gradient bg-white/5 text-white" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks" data-menu>
+        <i data-lucide="menu" style="width:16px;height:16px"></i>
+      </button>
     </div>
   </nav>
 
-  <main id="top">
-    <header class="hero">
-      <div class="hero-bg" aria-hidden="true"></div>
-      <div class="hero-content">
-        <div class="eyebrow"><i data-lucide="sparkles"></i><span class="id">Dibangun di atas OpenClaw oleh etalas studio</span><span class="en">Built on OpenClaw by etalas studio</span></div>
-        <h1><span class="id">AI Sales untuk<br><em>Tim Sales</em></span><span class="en">AI Sales for<br><em>Any Business</em></span></h1>
-        <p class="hero-copy">
-          <span class="id">RAISA membantu tim menemukan prospek, membuat outreach, dan melakukan follow-up. Pekerjaan rutin ditangani AI, sementara keputusan penting tetap di tangan tim Anda.</span>
-          <span class="en">RAISA helps your team find prospects, write outreach, follow up, and report pipeline activity using an AI sales agent that keeps humans in control where it matters.</span>
+  <!-- Mobile menu -->
+  <div class="md:hidden hidden border-b border-white/10 bg-neutral-950/95 backdrop-blur-xl" id="mobileNav">
+    <div class="px-4 pb-4 pt-2 flex flex-col gap-1">
+      <a class="py-3 px-2 text-sm text-neutral-300 hover:text-white border-b border-white/10 no-underline" href="#solution"><span class="id">Solusi</span><span class="en">Solution</span></a>
+      <a class="py-3 px-2 text-sm text-neutral-300 hover:text-white border-b border-white/10 no-underline" href="#integrations"><span class="id">Integrasi</span><span class="en">Integrations</span></a>
+      <a class="py-3 px-2 text-sm text-neutral-300 hover:text-white border-b border-white/10 no-underline" href="#demo"><span class="id">Demo</span><span class="en">Demo</span></a>
+      <a class="mt-2 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-blue-400 text-black px-5 py-2.5 text-sm font-semibold no-underline self-start"
+         style="border-radius:9999px;"
+         href="https://wa.me/62811297339"
+         data-wa data-msg-id="Hi etalas, saya mau book demo RAISA." data-msg-en="Hi etalas, I'd like to book a RAISA demo."
+         target="_blank" rel="noopener">
+        <i data-lucide="calendar-check" style="width:15px;height:15px"></i>
+        Book Demo
+      </a>
+    </div>
+  </div>
+</header>
+
+<main class="relative z-10" id="top">
+
+  <!-- ───── HERO ───── -->
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8 pb-16 md:pb-24 lg:pt-32 relative overflow-hidden">
+    <div class="pointer-events-none absolute inset-0 -z-10">
+      <div class="absolute top-1/4 left-1/4 h-[500px] w-[500px] rounded-full bg-blue-500/[0.07] blur-3xl"></div>
+      <div class="absolute top-1/2 right-1/4 h-64 w-64 rounded-full bg-orange-500/[0.05] blur-3xl"></div>
+    </div>
+
+    <!-- Pill -->
+    <div class="mx-auto w-fit mb-6 [animation:fadeSlideIn_0.8s_ease-out_0s_both] animate-on-scroll animate">
+      <div class="inline-flex items-center gap-2 rounded-full border-gradient bg-white/5 px-3 py-1.5 text-xs text-neutral-300" style="border-radius:9999px;">
+        <span class="inline-flex items-center justify-center rounded-full bg-blue-400/20 text-blue-300 px-2 py-0.5 text-[10px] font-semibold">
+          <span class="id">Baru</span><span class="en">New</span>
+        </span>
+        <span class="font-medium"><span class="id">Dibangun di atas OpenClaw</span><span class="en">Built on OpenClaw</span></span>
+        <i data-lucide="sparkles" style="width:13px;height:13px;color:#60a5fa"></i>
+      </div>
+    </div>
+
+    <!-- Heading + copy -->
+    <div class="[animation:fadeSlideIn_0.8s_ease-out_0.1s_both] animate-on-scroll text-center animate">
+      <h1 class="mx-auto max-w-4xl text-5xl sm:text-6xl md:text-7xl lg:text-[80px] tracking-tighter leading-[0.98]">
+        <span class="id">AI Sales untuk <span class="text-blue-300">Tim Sales</span></span>
+        <span class="en">AI Sales for <span class="text-blue-300">Any Business</span></span>
+      </h1>
+
+      <p class="mx-auto mt-5 max-w-2xl text-base sm:text-lg text-neutral-300 leading-relaxed">
+        <span class="id">RAISA membantu tim menemukan prospek, membuat outreach, dan melakukan follow-up. Pekerjaan rutin ditangani AI, sementara keputusan penting tetap di tangan tim Anda.</span>
+        <span class="en">RAISA helps your team find prospects, write outreach, follow up, and report pipeline activity using an AI sales agent that keeps humans in control where it matters.</span>
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-col sm:flex-row gap-3 mt-8 items-center justify-center">
+        <a class="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-blue-400 text-black px-6 py-3 text-sm font-semibold shadow-[0_8px_30px_rgba(59,130,246,0.3)] hover:-translate-y-0.5 transition-all no-underline"
+           style="border-radius:9999px;"
+           href="https://wa.me/62811297339"
+           data-wa data-msg-id="Hi etalas, saya mau book demo RAISA." data-msg-en="Hi etalas, I'd like to book a RAISA demo."
+           target="_blank" rel="noopener">
+          <i data-lucide="calendar-check" style="width:16px;height:16px"></i>
+          <span class="id">Book Demo RAISA</span><span class="en">Book a RAISA Demo</span>
+        </a>
+
+        <div class="inline-block group relative">
+          <a class="inline-flex items-center gap-2 rounded-full border-gradient bg-white/5 backdrop-blur-xl px-5 py-3 text-sm font-medium text-white/80 hover:text-white transition-all hover:-translate-y-0.5 no-underline"
+             style="border-radius:9999px;"
+             href="#solution">
+            <i data-lucide="play-circle" style="width:16px;height:16px"></i>
+            <span class="id">Lihat Cara Kerja</span><span class="en">See How It Works</span>
+          </a>
+          <span class="pointer-events-none absolute -bottom-3 left-1/2 z-0 h-6 w-44 -translate-x-1/2 rounded-full opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100" style="background: radial-gradient(60% 100% at 50% 50%, rgba(59,130,246,.55), rgba(59,130,246,.28) 35%, transparent 70%); filter: blur(10px) saturate(120%);" aria-hidden="true"></span>
+        </div>
+      </div>
+
+      <!-- Scroll cue -->
+      <div class="inline-flex items-center gap-3 mt-10 text-neutral-500 text-[11px] tracking-[0.16em] uppercase">
+        <span class="w-7 h-px bg-neutral-500"></span>
+        <span class="id">Gulir untuk jelajahi</span><span class="en">Scroll to explore</span>
+        <span class="w-7 h-px bg-neutral-500"></span>
+      </div>
+    </div>
+
+    <!-- Bento Grid -->
+    <div class="grid grid-cols-1 auto-rows-[200px] md:mt-16 md:grid-cols-6 md:gap-6 lg:grid-cols-12 lg:mt-24 overflow-hidden h-[820px] mt-16 gap-4" style="mask-image: linear-gradient(180deg, transparent, black 0%, black 60%, transparent); -webkit-mask-image: linear-gradient(180deg, transparent, black 0%, black 60%, transparent);">
+
+      <!-- Workflow Card -->
+      <div class="relative overflow-hidden rounded-3xl border-gradient md:col-span-3 lg:col-span-6 md:row-span-2 [animation:fadeSlideIn_0.8s_ease-out_0.3s_both] animate-on-scroll animate p-6 sm:p-8 flex flex-col" style="background:linear-gradient(225deg,rgba(255,255,255,0.0) 0%,rgba(255,255,255,0.05) 50%,rgba(255,255,255,0.0) 100%); border-radius: 24px;">
+        <div class="flex items-center justify-between">
+          <span class="inline-flex items-center gap-1 text-[11px] border-gradient text-slate-300 bg-white/5 rounded-full px-2.5 py-1 backdrop-blur" style="border-radius:9999px;">
+            <span class="id">Alur Kerja RAISA</span><span class="en">RAISA Workflow</span>
+          </span>
+          <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 ring-1 ring-emerald-400/20 px-2.5 py-1 text-[10px] font-medium text-emerald-300">
+            <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="id">Aktif</span><span class="en">Live</span>
+          </span>
+        </div>
+        <div class="mt-6 flex-1 flex flex-col justify-center gap-3">
+          <div class="flex items-center gap-3 rounded-2xl bg-white/5 border-gradient p-4">
+            <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-blue-400/15 shrink-0"><i data-lucide="search" style="width:16px;height:16px;color:#93c5fd"></i></span>
+            <div class="min-w-0">
+              <p class="text-sm font-semibold text-white"><span class="id">Prospecting</span><span class="en">Prospecting</span></p>
+              <p class="text-xs text-neutral-400"><span class="id">Temukan lead sesuai ICP</span><span class="en">Find leads matching your ICP</span></p>
+            </div>
+            <span class="ml-auto text-[11px] text-emerald-300 font-medium shrink-0"><span class="id">Selesai</span><span class="en">Done</span></span>
+          </div>
+          <div class="flex items-center gap-3 rounded-2xl bg-white/5 border-gradient p-4">
+            <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-blue-400/15 shrink-0"><i data-lucide="pen-line" style="width:16px;height:16px;color:#93c5fd"></i></span>
+            <div class="min-w-0">
+              <p class="text-sm font-semibold text-white"><span class="id">Draft Outreach</span><span class="en">Outreach Draft</span></p>
+              <p class="text-xs text-neutral-400"><span class="id">Menunggu approval tim</span><span class="en">Waiting on team approval</span></p>
+            </div>
+            <span class="ml-auto text-[11px] text-amber-300 font-medium shrink-0"><span class="id">Review</span><span class="en">Review</span></span>
+          </div>
+          <div class="flex items-center gap-3 rounded-2xl bg-white/5 border-gradient p-4">
+            <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-blue-400/15 shrink-0"><i data-lucide="send" style="width:16px;height:16px;color:#93c5fd"></i></span>
+            <div class="min-w-0">
+              <p class="text-sm font-semibold text-white"><span class="id">Follow-up</span><span class="en">Follow-up</span></p>
+              <p class="text-xs text-neutral-400"><span class="id">Terjadwal otomatis</span><span class="en">Scheduled automatically</span></p>
+            </div>
+            <span class="ml-auto text-[11px] text-neutral-400 font-medium shrink-0"><span class="id">Terjadwal</span><span class="en">Queued</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stat Card -->
+      <div class="rounded-3xl bg-white text-neutral-900 p-6 border-gradient md:col-span-3 lg:col-span-3 [animation:fadeSlideIn_0.8s_ease-out_0.4s_both] animate-on-scroll animate" style="background:linear-gradient(225deg,rgba(255,255,255,0.95) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0.95) 100%); border-radius: 24px;">
+        <p class="text-4xl tracking-tighter">4</p>
+        <p class="mt-2 text-sm text-neutral-600 font-medium"><span class="id">Channel terintegrasi</span><span class="en">Integrated channels</span></p>
+        <div class="mt-4 flex items-center gap-2 text-blue-600">
+          <i data-lucide="plug-zap" style="width:16px;height:16px"></i>
+          <span class="text-xs font-medium"><span class="id">Tanpa migrasi data</span><span class="en">No data migration</span></span>
+        </div>
+      </div>
+
+      <!-- Config Card -->
+      <article class="overflow-hidden border-gradient rounded-3xl relative md:col-span-3 lg:col-span-3 md:row-span-2 [animation:fadeSlideIn_0.8s_ease-out_0.5s_both] animate-on-scroll animate" style="background:linear-gradient(225deg,rgba(255,255,255,0.0) 0%,rgba(255,255,255,0.05) 50%,rgba(255,255,255,0.0) 100%); border-radius: 24px;">
+        <div class="h-full p-6 relative flex flex-col">
+          <div class="relative mx-auto h-full w-full flex items-center justify-center flex-1">
+            <div class="scale-[0.85] w-full">
+              <div class="backdrop-blur-[2px] bg-white/[0.03] border-gradient rounded-2xl">
+                <div class="px-4 py-3 border-b border-white/10 flex items-center gap-2">
+                  <i data-lucide="settings-2" style="width:14px;height:14px;color:rgba(255,255,255,.7)"></i>
+                  <span class="text-[11px] font-medium text-white/80">raisa.config.yaml</span>
+                  <span class="ml-auto text-[10px] text-white/50"><span class="id">tersimpan</span><span class="en">saved</span></span>
+                </div>
+                <pre class="text-[11px] leading-relaxed text-white/80 p-4">icp: "B2B SaaS, 50-500 org"
+tone: "profesional, ringkas"
+channels:
+  - email
+  - linkedin
+  - whatsapp
+approval: required_before_send</pre>
+              </div>
+            </div>
+          </div>
+          <div class="relative pt-2">
+            <h3 class="text-lg font-semibold tracking-tight text-white/95"><span class="id">Konfigurasi dalam hitungan menit</span><span class="en">Configured in minutes</span></h3>
+            <p class="mt-2 text-sm text-white/70"><span class="id">Atur target, gaya bahasa, dan aturan approval Anda.</span><span class="en">Set your target, tone, and approval rules.</span></p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Chart Card -->
+      <div class="rounded-3xl border-gradient p-6 md:col-span-3 lg:col-span-3 md:row-span-2 [animation:fadeSlideIn_0.8s_ease-out_0.6s_both] animate-on-scroll animate" style="background:linear-gradient(225deg,rgba(255,255,255,0.0) 0%,rgba(255,255,255,0.05) 50%,rgba(255,255,255,0.0) 100%); border-radius: 24px;">
+        <h3 class="text-base font-semibold tracking-tight"><span class="id">Follow-up tepat waktu</span><span class="en">On-time follow-ups</span></h3>
+        <p class="mt-1 text-sm text-neutral-300"><span class="id">Contoh tampilan · 7 hari</span><span class="en">Sample view · 7 days</span></p>
+        <div class="mt-4 rounded-xl bg-black/30 p-3 border-gradient">
+          <div class="relative w-full h-28">
+            <canvas id="followupChart"></canvas>
+          </div>
+        </div>
+        <div class="mt-4 flex items-center justify-between">
+          <div class="flex items-center gap-2 text-blue-400">
+            <span class="h-2 w-2 rounded-full bg-blue-400"></span>
+            <span class="text-sm font-semibold tracking-tight"><span class="id">Terjadwal</span><span class="en">Scheduled</span></span>
+          </div>
+          <span class="text-xs text-neutral-300 font-medium"><span class="id">Diperbarui harian</span><span class="en">Updated daily</span></span>
+        </div>
+      </div>
+
+      <!-- Integrations Card -->
+      <div class="relative overflow-hidden rounded-3xl border-gradient md:col-span-3 lg:col-span-3 md:row-span-2 [animation:fadeSlideIn_0.8s_ease-out_0.7s_both] animate-on-scroll animate p-6" style="background:linear-gradient(225deg,rgba(255,255,255,0.0) 0%,rgba(255,255,255,0.05) 50%,rgba(255,255,255,0.0) 100%); border-radius: 24px;">
+        <p class="text-3xl tracking-tighter">4</p>
+        <p class="mt-1 text-sm text-neutral-300"><span class="id">Tools yang sudah dipakai tim Anda</span><span class="en">Tools your team already uses</span></p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <span class="inline-flex items-center rounded-full bg-blue-400/15 text-blue-300 px-2.5 py-1 text-xs font-medium border-gradient" style="border-radius: 9999px;">Slack</span>
+          <span class="inline-flex items-center rounded-full bg-blue-400/15 text-blue-300 px-2.5 py-1 text-xs font-medium border-gradient" style="border-radius: 9999px;">LinkedIn</span>
+          <span class="inline-flex items-center rounded-full bg-blue-400/15 text-blue-300 px-2.5 py-1 text-xs font-medium border-gradient" style="border-radius: 9999px;">Apollo</span>
+          <span class="inline-flex items-center rounded-full bg-blue-400/15 text-blue-300 px-2.5 py-1 text-xs font-medium border-gradient" style="border-radius: 9999px;">WhatsApp</span>
+        </div>
+        <div class="mt-5 grid grid-cols-4 gap-2">
+          <div class="h-14 rounded-xl bg-white/5 border-gradient flex items-center justify-center text-xs font-bold text-white">S</div>
+          <div class="h-14 rounded-xl bg-white/5 border-gradient flex items-center justify-center text-xs font-bold text-white">in</div>
+          <div class="h-14 rounded-xl bg-white/5 border-gradient flex items-center justify-center text-xs font-bold text-white">A</div>
+          <div class="h-14 rounded-xl bg-white/5 border-gradient flex items-center justify-center text-xs font-bold text-white">W</div>
+        </div>
+      </div>
+
+      <!-- AI Agent Card -->
+      <article class="relative overflow-hidden hover:bg-white/[0.08] transition-all group rounded-3xl border-gradient md:col-span-3 lg:col-span-3 md:row-span-2 [animation:fadeSlideIn_0.8s_ease-out_0.8s_both] animate-on-scroll animate" style="background:linear-gradient(225deg,rgba(255,255,255,0.0) 0%,rgba(255,255,255,0.05) 50%,rgba(255,255,255,0.0) 100%); border-radius: 24px;">
+        <div class="flex p-6 items-center justify-between">
+          <h4 class="text-base font-semibold tracking-tight"><span class="id">Agent yang Bisa Diatur</span><span class="en">Configurable Agent</span></h4>
+          <span class="inline-flex items-center gap-1 text-[11px] border-gradient text-slate-300 bg-white/5 rounded-full px-2.5 py-1" style="border-radius: 9999px;">
+            AI-Powered
+          </span>
+        </div>
+        <div class="flex-1 flex p-6 pt-0 items-center">
+          <div class="relative w-full">
+            <div class="hover:bg-black/50 transition-all bg-black/60 border-gradient rounded-xl p-3 backdrop-blur">
+              <div class="flex gap-1 mb-2 items-center">
+                <span class="h-2.5 w-2.5 rounded-full bg-rose-400/80"></span>
+                <span class="h-2.5 w-2.5 rounded-full bg-amber-400/80"></span>
+                <span class="h-2.5 w-2.5 rounded-full bg-blue-400/80"></span>
+              </div>
+              <div class="overflow-x-auto">
+                <pre class="text-[10px] leading-tight min-w-max text-slate-300"><code># RAISA Agent
+class SalesAgent:
+  def __init__(self):
+    self.mode = "human_in_loop"
+
+  def draft_outreach(self, lead):
+    return message
+</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Orbit Card -->
+      <section class="group relative overflow-hidden border-gradient rounded-3xl md:col-span-3 lg:col-span-3 md:row-span-2 [animation:fadeSlideIn_0.8s_ease-out_0.9s_both] animate-on-scroll animate" style="background:linear-gradient(225deg,rgba(255,255,255,0.0) 0%,rgba(255,255,255,0.05) 50%,rgba(255,255,255,0.0) 100%); border-radius: 24px;">
+        <div class="relative h-full overflow-hidden flex flex-col">
+          <div class="flex-1 relative overflow-hidden">
+            <div class="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+              <div class="absolute left-1/2 top-1/2 h-[240px] w-[240px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 animate-pulse" style="animation-delay:0s;"></div>
+              <div class="absolute left-1/2 top-1/2 h-[200px] w-[200px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 animate-pulse" style="animation-delay:.6s;"></div>
+              <div class="absolute left-1/2 top-1/2 h-[280px] w-[280px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 animate-pulse" style="animation-delay:1.2s;"></div>
+            </div>
+            <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+              <div class="relative flex h-28 w-28 items-center justify-center rounded-full border-gradient bg-neutral-900/70 backdrop-blur-md transition-transform duration-300 group-hover:scale-105" style="border-radius: 9999px;">
+                <i data-lucide="radar" style="width:40px;height:40px;color:#93c5fd"></i>
+              </div>
+            </div>
+          </div>
+          <div class="relative border-t border-white/10">
+            <div class="p-6">
+              <h3 class="text-xl tracking-tight font-semibold text-slate-100"><span class="id">RAISA di Tengah Workflow Anda</span><span class="en">RAISA at the Center of Your Workflow</span></h3>
+              <p class="leading-relaxed text-slate-400 mt-3 text-sm"><span class="id">Terhubung ke Slack, LinkedIn, Apollo &amp; WhatsApp tanpa mengubah cara kerja tim.</span><span class="en">Connected to Slack, LinkedIn, Apollo &amp; WhatsApp without changing how your team works.</span></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- What you get Card -->
+      <div class="flex flex-col rounded-3xl border-gradient p-6 backdrop-blur-md transition md:col-span-3 lg:col-span-3 md:row-span-2 [animation:fadeSlideIn_0.8s_ease-out_1s_both] animate-on-scroll animate" style="background:linear-gradient(225deg,rgba(255,255,255,0.0) 0%,rgba(255,255,255,0.05) 50%,rgba(255,255,255,0.0) 100%); border-radius: 24px;">
+        <div class="mb-4 flex items-center gap-3">
+          <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-blue-400/15"><i data-lucide="package-check" style="width:16px;height:16px;color:#93c5fd"></i></span>
+          <p class="text-sm font-semibold text-white"><span class="id">Yang Anda Dapatkan</span><span class="en">What You Get</span></p>
+        </div>
+        <ul class="text-sm text-white/80 space-y-3">
+          <li class="flex items-start gap-2"><i data-lucide="check" style="width:14px;height:14px;color:#4ade80;margin-top:3px;flex-shrink:0"></i><span><span class="id">Draft pesan siap di-approve</span><span class="en">Message drafts ready to approve</span></span></li>
+          <li class="flex items-start gap-2"><i data-lucide="check" style="width:14px;height:14px;color:#4ade80;margin-top:3px;flex-shrink:0"></i><span><span class="id">Reminder follow-up otomatis</span><span class="en">Automated follow-up reminders</span></span></li>
+          <li class="flex items-start gap-2"><i data-lucide="check" style="width:14px;height:14px;color:#4ade80;margin-top:3px;flex-shrink:0"></i><span><span class="id">Ringkasan aktivitas harian</span><span class="en">Daily activity summaries</span></span></li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ───── CAPABILITIES (marquee) ───── -->
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-20 relative" id="capabilities">
+    <div class="overflow-hidden rounded-3xl ring-white/10 ring-1 p-6 sm:p-8 relative backdrop-blur border-gradient" style="background:linear-gradient(225deg,rgba(255,255,255,0.0) 0%,rgba(255,255,255,0.05) 50%,rgba(255,255,255,0.0) 100%); border-radius: 24px;">
+      <div class="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-blue-500/10 blur-3xl"></div>
+
+      <!-- Header -->
+      <div class="[animation:fadeSlideIn_0.8s_ease-out_0.1s_both] animate-on-scroll text-center mb-12 animate">
+        <div class="mb-6">
+          <div class="flex items-center justify-between text-[13px] sm:text-sm font-medium uppercase tracking-tight text-blue-400">
+            <span><span class="id">KEMAMPUAN</span><span class="en">CAPABILITIES</span></span>
+            <span>(01)</span>
+          </div>
+          <div class="mt-2 h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-0 text-left">
+          <h2 class="text-3xl sm:text-4xl md:text-5xl text-white mt-0 tracking-tighter">
+            <span class="id">Yang bisa RAISA lakukan untuk pipeline Anda</span>
+            <span class="en">What RAISA can do for your pipeline</span>
+          </h2>
+          <p class="text-sm sm:text-base text-slate-300 max-w-[42ch] mt-3 sm:mt-0">
+            <span class="id">Satu agent AI untuk mencari, menghubungi, dan menindaklanjuti prospek.</span>
+            <span class="en">One AI agent to find, reach, and follow up on prospects.</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Marquee -->
+      <div class="relative overflow-hidden rounded-3xl ring-white/10 ring-1 border-gradient [animation:fadeSlideIn_0.8s_ease-out_0.2s_both] animate-on-scroll animate" style="background:linear-gradient(225deg,rgba(255,255,255,0.0) 0%,rgba(255,255,255,0.05) 50%,rgba(255,255,255,0.0) 100%); border-radius: 24px;">
+        <div class="pointer-events-none absolute inset-y-0 left-0 w-24 sm:w-40 bg-gradient-to-r from-neutral-950 to-transparent z-10"></div>
+        <div class="pointer-events-none absolute inset-y-0 right-0 w-24 sm:w-40 bg-gradient-to-l from-neutral-950 to-transparent z-10"></div>
+
+        <!-- Row 1 -->
+        <div class="relative py-6 sm:py-8">
+          <div class="marquee-track flex gap-4 sm:gap-5 will-change-transform" style="animation: marquee-ltr 40s linear infinite;">
+            <article class="shrink-0 w-[260px] sm:w-[320px] rounded-2xl border-gradient bg-white/5 ring-1 ring-white/10 p-5" style="border-radius: 16px;">
+              <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-blue-400/15 mb-3"><i data-lucide="search" style="width:16px;height:16px;color:#93c5fd"></i></span>
+              <p class="text-sm font-semibold text-white">Prospecting</p>
+              <p class="mt-1.5 text-sm text-neutral-400"><span class="id">Temukan prospek sesuai ICP, industri, dan jabatan.</span><span class="en">Find prospects by ICP, industry, and role.</span></p>
+            </article>
+            <article class="shrink-0 w-[260px] sm:w-[320px] rounded-2xl border-gradient bg-white/5 ring-1 ring-white/10 p-5" style="border-radius: 16px;">
+              <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-blue-400/15 mb-3"><i data-lucide="mail" style="width:16px;height:16px;color:#93c5fd"></i></span>
+              <p class="text-sm font-semibold text-white"><span class="id">Outreach</span><span class="en">Outreach</span></p>
+              <p class="mt-1.5 text-sm text-neutral-400"><span class="id">Draft email, LinkedIn, dan WhatsApp sesuai gaya bisnis Anda.</span><span class="en">Draft email, LinkedIn, and WhatsApp in your tone.</span></p>
+            </article>
+            <article class="shrink-0 w-[260px] sm:w-[320px] rounded-2xl border-gradient bg-white/5 ring-1 ring-white/10 p-5" style="border-radius: 16px;">
+              <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-blue-400/15 mb-3"><i data-lucide="clock" style="width:16px;height:16px;color:#93c5fd"></i></span>
+              <p class="text-sm font-semibold text-white"><span class="id">Follow-up</span><span class="en">Follow-up</span></p>
+              <p class="mt-1.5 text-sm text-neutral-400"><span class="id">Jadwalkan dan kirim follow-up tanpa ada yang terlewat.</span><span class="en">Schedule and send follow-ups so nothing slips.</span></p>
+            </article>
+            <article class="shrink-0 w-[260px] sm:w-[320px] rounded-2xl border-gradient bg-white/5 ring-1 ring-white/10 p-5" style="border-radius: 16px;">
+              <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-blue-400/15 mb-3"><i data-lucide="flame" style="width:16px;height:16px;color:#93c5fd"></i></span>
+              <p class="text-sm font-semibold text-white"><span class="id">Lead Scoring</span><span class="en">Lead Scoring</span></p>
+              <p class="mt-1.5 text-sm text-neutral-400"><span class="id">Nilai lead berdasarkan sinyal ketertarikan.</span><span class="en">Score leads by intent signals.</span></p>
+            </article>
+            <!-- Duplicate for seamless loop -->
+            <article class="shrink-0 w-[260px] sm:w-[320px] rounded-2xl border-gradient bg-white/5 ring-1 ring-white/10 p-5" style="border-radius: 16px;">
+              <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-blue-400/15 mb-3"><i data-lucide="search" style="width:16px;height:16px;color:#93c5fd"></i></span>
+              <p class="text-sm font-semibold text-white">Prospecting</p>
+              <p class="mt-1.5 text-sm text-neutral-400"><span class="id">Temukan prospek sesuai ICP, industri, dan jabatan.</span><span class="en">Find prospects by ICP, industry, and role.</span></p>
+            </article>
+            <article class="shrink-0 w-[260px] sm:w-[320px] rounded-2xl border-gradient bg-white/5 ring-1 ring-white/10 p-5" style="border-radius: 16px;">
+              <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-blue-400/15 mb-3"><i data-lucide="mail" style="width:16px;height:16px;color:#93c5fd"></i></span>
+              <p class="text-sm font-semibold text-white"><span class="id">Outreach</span><span class="en">Outreach</span></p>
+              <p class="mt-1.5 text-sm text-neutral-400"><span class="id">Draft email, LinkedIn, dan WhatsApp sesuai gaya bisnis Anda.</span><span class="en">Draft email, LinkedIn, and WhatsApp in your tone.</span></p>
+            </article>
+          </div>
+        </div>
+
+        <div class="h-px w-full bg-white/10"></div>
+
+        <!-- Row 2 -->
+        <div class="relative py-6 sm:py-8">
+          <div class="marquee-track flex gap-4 sm:gap-5 will-change-transform" style="animation: marquee-rtl 40s linear infinite;">
+            <article class="shrink-0 w-[260px] sm:w-[320px] rounded-2xl border-gradient bg-white/5 ring-1 ring-white/10 p-5" style="border-radius: 16px;">
+              <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-blue-400/15 mb-3"><i data-lucide="file-spreadsheet" style="width:16px;height:16px;color:#93c5fd"></i></span>
+              <p class="text-sm font-semibold text-white"><span class="id">Reporting</span><span class="en">Reporting</span></p>
+              <p class="mt-1.5 text-sm text-neutral-400"><span class="id">Ringkasan aktivitas sales dikirim ke channel tim.</span><span class="en">Activity summaries delivered to your team channel.</span></p>
+            </article>
+            <article class="shrink-0 w-[260px] sm:w-[320px] rounded-2xl border-gradient bg-white/5 ring-1 ring-white/10 p-5" style="border-radius: 16px;">
+              <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-blue-400/15 mb-3"><i data-lucide="check-check" style="width:16px;height:16px;color:#93c5fd"></i></span>
+              <p class="text-sm font-semibold text-white"><span class="id">Human Approval</span><span class="en">Human Approval</span></p>
+              <p class="mt-1.5 text-sm text-neutral-400"><span class="id">Setiap pesan keluar menunggu persetujuan Anda.</span><span class="en">Every outbound message waits for your approval.</span></p>
+            </article>
+            <article class="shrink-0 w-[260px] sm:w-[320px] rounded-2xl border-gradient bg-white/5 ring-1 ring-white/10 p-5" style="border-radius: 16px;">
+              <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-blue-400/15 mb-3"><i data-lucide="plug-zap" style="width:16px;height:16px;color:#93c5fd"></i></span>
+              <p class="text-sm font-semibold text-white"><span class="id">Integrasi</span><span class="en">Integrations</span></p>
+              <p class="mt-1.5 text-sm text-neutral-400"><span class="id">Terhubung dengan Slack, LinkedIn, Apollo, dan WhatsApp.</span><span class="en">Works with Slack, LinkedIn, Apollo, and WhatsApp.</span></p>
+            </article>
+            <article class="shrink-0 w-[260px] sm:w-[320px] rounded-2xl border-gradient bg-white/5 ring-1 ring-white/10 p-5" style="border-radius: 16px;">
+              <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-blue-400/15 mb-3"><i data-lucide="radar" style="width:16px;height:16px;color:#93c5fd"></i></span>
+              <p class="text-sm font-semibold text-white"><span class="id">Dibangun di atas OpenClaw</span><span class="en">Built on OpenClaw</span></p>
+              <p class="mt-1.5 text-sm text-neutral-400"><span class="id">Infrastruktur AI yang andal untuk agent sales Anda.</span><span class="en">Reliable AI infrastructure for your sales agent.</span></p>
+            </article>
+            <!-- Duplicate for seamless loop -->
+            <article class="shrink-0 w-[260px] sm:w-[320px] rounded-2xl border-gradient bg-white/5 ring-1 ring-white/10 p-5" style="border-radius: 16px;">
+              <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-blue-400/15 mb-3"><i data-lucide="file-spreadsheet" style="width:16px;height:16px;color:#93c5fd"></i></span>
+              <p class="text-sm font-semibold text-white"><span class="id">Reporting</span><span class="en">Reporting</span></p>
+              <p class="mt-1.5 text-sm text-neutral-400"><span class="id">Ringkasan aktivitas sales dikirim ke channel tim.</span><span class="en">Activity summaries delivered to your team channel.</span></p>
+            </article>
+            <article class="shrink-0 w-[260px] sm:w-[320px] rounded-2xl border-gradient bg-white/5 ring-1 ring-white/10 p-5" style="border-radius: 16px;">
+              <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-blue-400/15 mb-3"><i data-lucide="check-check" style="width:16px;height:16px;color:#93c5fd"></i></span>
+              <p class="text-sm font-semibold text-white"><span class="id">Human Approval</span><span class="en">Human Approval</span></p>
+              <p class="mt-1.5 text-sm text-neutral-400"><span class="id">Setiap pesan keluar menunggu persetujuan Anda.</span><span class="en">Every outbound message waits for your approval.</span></p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── SOLUTION (About) ───── -->
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-4 mb-24 relative" id="solution">
+    <div class="pointer-events-none absolute -z-10 inset-0">
+      <div class="absolute -top-10 -left-10 h-80 w-80 rounded-full bg-blue-500/10 blur-3xl"></div>
+      <div class="absolute bottom-0 right-1/3 h-64 w-64 rounded-full bg-blue-400/10 blur-3xl"></div>
+    </div>
+
+    <div class="[animation:fadeSlideIn_0.8s_ease-out_0s_both] animate-on-scroll animate flex items-center gap-3 mb-10">
+      <span class="text-xs font-semibold uppercase tracking-[0.16em] text-blue-400"><span class="id">SOLUSI</span><span class="en">SOLUTION</span></span>
+      <div class="h-px flex-1 bg-white/10"></div>
+      <span class="text-xs text-neutral-500">(02)</span>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+      <!-- Visual: Digest Preview -->
+      <div class="[animation:fadeSlideIn_0.5s_ease-out_0s_both] animate-on-scroll border-gradient bg-gradient-to-br from-blue-500/10 via-blue-500/5 to-blue-300/10 rounded-[28px] p-2 animate">
+        <div class="overflow-hidden rounded-[22px] bg-black/40 ring-1 ring-white/10">
+          <div class="flex items-center justify-between px-4 py-3 border-b border-white/10">
+            <div class="flex items-center gap-2">
+              <span class="inline-flex items-center justify-center h-7 w-7 rounded-lg bg-blue-500/15 ring-1 ring-white/10">
+                <i data-lucide="bell" style="width:16px;height:16px;color:#93c5fd"></i>
+              </span>
+              <div>
+                <p class="text-xs font-semibold text-white leading-none"><span class="id">RAISA Digest · Harian</span><span class="en">RAISA Digest · Daily</span></p>
+                <p class="text-[10px] text-emerald-400 mt-1"><span class="id">Contoh tampilan</span><span class="en">Sample view</span></p>
+              </div>
+            </div>
+            <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 ring-1 ring-emerald-400/20 px-2.5 py-1 text-[10px] font-medium text-emerald-300">
+              <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span class="id">Terhubung</span><span class="en">Connected</span>
+            </span>
+          </div>
+
+          <div class="relative h-[280px] md:h-[420px] w-full p-4 sm:p-6 flex items-end justify-center gap-2 sm:gap-3">
+            <div class="absolute top-6 left-6 inline-flex items-center gap-2 rounded-lg bg-blue-500/15 ring-1 ring-blue-400/25 px-3 py-1.5 backdrop-blur">
+              <i data-lucide="pen-line" style="width:14px;height:14px;color:#93c5fd"></i>
+              <span class="text-[11px] font-semibold text-blue-200"><span class="id">Draft Siap · Menunggu Approval</span><span class="en">Draft Ready · Awaiting Approval</span></span>
+            </div>
+            <div class="absolute top-6 right-6 inline-flex items-center gap-2 rounded-lg bg-emerald-500/15 ring-1 ring-emerald-400/25 px-3 py-1.5 backdrop-blur">
+              <i data-lucide="send" style="width:14px;height:14px;color:#4ade80"></i>
+              <span class="text-[11px] font-semibold text-emerald-300"><span class="id">Follow-up Terkirim</span><span class="en">Follow-up Sent</span></span>
+            </div>
+
+            <div class="flex flex-col items-center justify-end"><span class="w-2.5 sm:w-3.5 rounded-sm bg-blue-400/50" style="height:38px"></span></div>
+            <div class="flex flex-col items-center justify-end"><span class="w-2.5 sm:w-3.5 rounded-sm bg-blue-400/60" style="height:56px"></span></div>
+            <div class="flex flex-col items-center justify-end"><span class="w-2.5 sm:w-3.5 rounded-sm bg-blue-400/70" style="height:44px"></span></div>
+            <div class="flex flex-col items-center justify-end"><span class="w-2.5 sm:w-3.5 rounded-sm bg-blue-400/80" style="height:80px"></span></div>
+            <div class="flex flex-col items-center justify-end"><span class="w-2.5 sm:w-3.5 rounded-sm bg-blue-400/90" style="height:64px"></span></div>
+            <div class="flex flex-col items-center justify-end"><span class="w-2.5 sm:w-3.5 rounded-sm bg-blue-400" style="height:104px"></span></div>
+            <div class="flex flex-col items-center justify-end"><span class="w-2.5 sm:w-3.5 rounded-sm bg-blue-300" style="height:90px"></span></div>
+            <div class="hidden sm:flex flex-col items-center justify-end"><span class="w-3.5 rounded-sm bg-blue-400/70" style="height:70px"></span></div>
+            <div class="hidden sm:flex flex-col items-center justify-end"><span class="w-3.5 rounded-sm bg-blue-300" style="height:118px"></span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copy -->
+      <div class="[animation:fadeSlideIn_0.5s_ease-out_0.1s_both] animate-on-scroll animate">
+        <div class="inline-flex items-center gap-2 text-sm text-blue-200/80">
+          <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-blue-500/15 ring-1 ring-white/10">
+            <i data-lucide="sparkles" style="width:14px;height:14px;color:#60a5fa"></i>
+          </span>
+          <span><span class="id">RAISA · Dibangun di atas OpenClaw</span><span class="en">RAISA · Built on OpenClaw</span></span>
+        </div>
+
+        <h2 class="mt-4 text-4xl sm:text-5xl text-white tracking-tighter leading-[1.05]">
+          <span class="id">Otomatisasi untuk yang bisa dibantu. <span class="text-blue-300">Keputusan manusia</span> untuk yang penting.</span>
+          <span class="en">Automation where it helps. <span class="text-blue-300">Human judgment</span> where it matters.</span>
+        </h2>
+
+        <p class="mt-5 text-base md:text-lg leading-relaxed text-white/70 max-w-2xl">
+          <span class="id">Tentukan target customer, penawaran, gaya komunikasi, dan aturan yang Anda inginkan. RAISA membantu mencari lead, membuat draft pesan, menjalankan follow-up, menilai lead, dan memberi tahu tim apa yang perlu diperhatikan. Keputusan penting tetap di tangan tim Anda.</span>
+          <span class="en">Give RAISA your target customer, offer, tone, and rules. It helps discover leads, draft messages, run sequences, score prospects, and report what needs attention — your team still holds the decisions that matter.</span>
         </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="https://wa.me/62811297339" data-wa data-msg-id="Hi etalas, saya mau book demo RAISA." data-msg-en="Hi etalas, I'd like to book a RAISA demo." target="_blank" rel="noopener"><i data-lucide="calendar-check"></i><span class="id">Book Demo RAISA</span><span class="en">Book a RAISA Demo</span></a>
-          <a class="btn btn-ghost" href="#solution"><i data-lucide="play-circle"></i><span class="id">Lihat Cara Kerja</span><span class="en">See How It Works</span></a>
-        </div>
-        <div class="signal-row" aria-label="RAISA capabilities">
-          <div class="signal"><b>Prospecting</b><span class="id">Temukan prospek berdasarkan ICP, industri, jabatan, dan buying signal.</span><span class="en">Build lead lists from ICP, industry, role, and buying signals.</span></div>
-          <div class="signal"><b>Outreach</b><span class="id">Buat draft email, LinkedIn, WhatsApp, dan follow-up sesuai gaya komunikasi bisnis Anda.</span><span class="en">Draft email, LinkedIn, WhatsApp, and follow-up sequences in your tone.</span></div>
-          <div class="signal"><b>Reporting</b><span class="id">Dapatkan ringkasan aktivitas, notifikasi lead potensial, dan pengingat follow-up di channel tim.</span><span class="en">Daily summaries, hot lead alerts, and follow-up reminders where teams work.</span></div>
-        </div>
-        <div class="scroll-cue"><span class="id">Gulir untuk jelajahi</span><span class="en">Scroll to explore</span></div>
-      </div>
-    </header>
 
-    <section class="problem" id="problem">
-      <div class="container">
-        <div class="problem-split">
-          <div class="problem-lead">
-            <div class="kicker"><i data-lucide="alert-triangle"></i><span class="id">Masalah</span><span class="en">Problem</span></div>
-            <h2><span class="id">Banyak peluang hilang karena <em>follow-up yang terlewat</em>.</span><span class="en">Sales teams lose deals <em>in the gaps</em>.</span></h2>
-            <p class="lead"><span class="id">Prospek terlewat. Follow-up terlambat. Catatan lead tersebar di spreadsheet, inbox, CRM, dan chat. RAISA membantu tim menyimpan konteks, menjalankan pekerjaan rutin, dan memastikan follow-up penting tidak terlewat.</span><span class="en">Prospects get missed. Follow-ups arrive late. Lead notes live across spreadsheets, inboxes, CRM fields, and chat threads. RAISA gives your sales process a working memory and an execution layer.</span></p>
-          </div>
-          <div class="problem-list">
-            <article class="pain-item"><h3><span class="id">Mencari prospek terlalu lama</span><span class="en">Prospecting takes too long</span></h3><p><span class="id">Tim menghabiskan berjam-jam mencari dan menyusun daftar prospek sebelum bisa mulai menghubungi mereka.</span><span class="en">Teams spend hours building lists before the first conversation even starts.</span></p></article>
-            <article class="pain-item"><h3><span class="id">Outreach tidak konsisten</span><span class="en">Outreach is inconsistent</span></h3><p><span class="id">Pesan dan follow-up berbeda-beda tergantung siapa yang menanganinya.</span><span class="en">Messaging and follow-up discipline change from person to person.</span></p></article>
-            <article class="pain-item"><h3><span class="id">Lead potensial terlewat</span><span class="en">Warm leads go cold</span></h3><p><span class="id">Balasan, sinyal ketertarikan, dan tindakan berikutnya tersebar di berbagai channel.</span><span class="en">Replies, intent signals, and next actions get buried across channels.</span></p></article>
-            <article class="pain-item"><h3><span class="id">Reporting masih manual</span><span class="en">Reporting is manual</span></h3><p><span class="id">Tim baru bisa melihat aktivitas sales setelah data dikumpulkan dan dirapikan.</span><span class="en">Sales activity is hard to see until someone cleans up the data.</span></p></article>
-          </div>
+        <div class="mt-8">
+          <a class="group inline-flex items-center gap-2 hover:opacity-90 transition-opacity border-gradient text-sm font-medium text-black bg-gradient-to-r from-blue-400 via-blue-400 to-blue-300 rounded-full pt-2.5 pr-5 pb-2.5 pl-5 shadow-[0_8px_30px_rgba(59,130,246,0.25)] no-underline"
+             style="border-radius: 9999px"
+             href="https://wa.me/62811297339"
+             data-wa data-msg-id="Hi etalas, saya mau book demo RAISA." data-msg-en="Hi etalas, I'd like to book a RAISA demo."
+             target="_blank" rel="noopener">
+            <span class="id">Book Demo RAISA</span><span class="en">Book a RAISA Demo</span>
+            <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-black/10 text-black">
+              <i data-lucide="arrow-up-right" style="width:14px;height:14px"></i>
+            </span>
+          </a>
         </div>
-      </div>
-    </section>
 
-    <section class="workflow" id="solution">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <div class="kicker"><i data-lucide="workflow"></i><span class="id">Solusi</span><span class="en">Solution</span></div>
-            <h2><span class="id">Otomatisasi untuk yang bisa dibantu. <em>Keputusan manusia</em> untuk yang penting.</span><span class="en">Automation where it helps. <em>Human judgment</em> where it matters.</span></h2>
+        <!-- Feature cards -->
+        <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 [animation:fadeSlideIn_0.5s_ease-out_0.2s_both] animate-on-scroll animate">
+          <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5 border-gradient">
+            <i data-lucide="zap" style="width:18px;height:18px;color:#93c5fd;margin-bottom:12px;display:block"></i>
+            <h3 class="text-base tracking-tight text-white font-semibold leading-none"><span class="id">Follow-up Real-Time</span><span class="en">Real-Time Follow-ups</span></h3>
+            <p class="mt-3 text-sm text-neutral-400"><span class="id">Pengingat &amp; pengiriman follow-up tepat waktu, setiap hari.</span><span class="en">Timely follow-up reminders and sends, every day.</span></p>
           </div>
-          <p class="lead"><span class="id">Tentukan target customer, penawaran, gaya komunikasi, dan aturan yang Anda inginkan. RAISA membantu mencari lead, membuat draft pesan, menjalankan follow-up, menilai lead, dan memberi tahu tim apa yang perlu diperhatikan. <strong>Keputusan penting tetap di tangan tim Anda.</strong></span><span class="en">Give RAISA your target customer, offer, tone, and rules. It helps discover leads, draft messages, run sequences, score prospects, and report what needs attention — your team still holds the decisions that matter.</span></p>
-        </div>
-        <div class="solution-body">
-          <div class="control-grid">
-            <div class="control-col raisa">
-              <h3><i data-lucide="sparkles"></i><span class="id">RAISA menangani</span><span class="en">RAISA handles</span></h3>
-              <div class="control-list">
-                <div class="control-item">Prospecting &amp; list building</div>
-                <div class="control-item">Outreach drafts &amp; follow-ups</div>
-                <div class="control-item">Lead scoring &amp; reporting</div>
-                <div class="control-item">Routine scheduling</div>
-              </div>
-            </div>
-            <div class="control-col">
-              <h3><i data-lucide="check-check"></i><span class="id">Tim Anda tetap memegang kendali</span><span class="en">You approve</span></h3>
-              <div class="control-list">
-                <div class="control-item"><span class="id">Draft pesan — email, LinkedIn, WhatsApp, ad copy</span><span class="en">Message drafts — email, LinkedIn, WhatsApp, ad copy</span></div>
-                <div class="control-item"><span class="id">Connection request — sebelum RAISA mengirimkannya</span><span class="en">Connection requests — before RAISA reaches out</span></div>
-              </div>
-            </div>
+          <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5 border-gradient">
+            <i data-lucide="brain-circuit" style="width:18px;height:18px;color:#93c5fd;margin-bottom:12px;display:block"></i>
+            <h3 class="text-base tracking-tight text-white font-semibold leading-none"><span class="id">AI yang Bisa Diatur</span><span class="en">Configurable AI</span></h3>
+            <p class="mt-3 text-sm text-neutral-400"><span class="id">Target customer, gaya bahasa, dan aturan approval — Anda yang tentukan.</span><span class="en">You set the target customer, tone, and approval rules.</span></p>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="integrations" id="integrations">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <div class="kicker"><i data-lucide="plug-zap"></i><span class="id">Integrasi</span><span class="en">Integrations</span></div>
-            <h2><span class="id">Gunakan RAISA bersama tools <em>yang sudah dipakai tim Anda</em>.</span><span class="en">Works with the tools your sales team <em>already uses</em>.</span></h2>
+          <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5 border-gradient">
+            <i data-lucide="layers" style="width:18px;height:18px;color:#93c5fd;margin-bottom:12px;display:block"></i>
+            <h3 class="text-base tracking-tight text-white font-semibold leading-none"><span class="id">Multi-Channel</span><span class="en">Multi-Channel</span></h3>
+            <p class="mt-3 text-sm text-neutral-400"><span class="id">Email, LinkedIn, WhatsApp, dan ad copy dalam satu alur.</span><span class="en">Email, LinkedIn, WhatsApp, and ad copy in one flow.</span></p>
           </div>
-          <p class="lead" style="margin-bottom:0"><span class="id">Tidak perlu mengubah workflow yang sudah berjalan. RAISA terhubung dengan Slack, LinkedIn, Apollo, dan WhatsApp — tools yang sudah digunakan tim sales Anda sehari-hari.</span><span class="en">No new tools required. RAISA works through Slack, LinkedIn, Apollo, and WhatsApp — the channels your sales team already uses every day.</span></p>
-        </div>
-        <div class="integrations-grid">
-          <div class="integration"><div class="integration-glyph">S</div><b>Slack</b></div>
-          <div class="integration"><div class="integration-glyph">in</div><b>LinkedIn</b></div>
-          <div class="integration"><div class="integration-glyph">A</div><b>Apollo</b></div>
-          <div class="integration"><div class="integration-glyph">W</div><b>WhatsApp</b></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta" id="demo">
-      <div class="container">
-        <h2><span class="id">Siap <em>mengotomatisasi</em> proses sales Anda?</span><span class="en">Ready to put <em>AI</em> into your sales workflow?</span></h2>
-        <p><span class="id">Ceritakan target customer Anda, bagaimana tim melakukan follow-up saat ini, dan di mana proses sales sering terhambat. Tim etalas akan membantu memetakan bagaimana RAISA dapat mendukung <strong>prospecting, outreach, reporting, dan approval</strong>.</span><span class="en">Tell us who you sell to, how your team follows up today, and where sales gets stuck. etalas will map how RAISA can support prospecting, outreach, reporting, and approval flow.</span></p>
-        <a class="btn btn-primary" href="https://wa.me/62811297339" data-wa data-msg-id="Hi etalas, saya mau map sales workflow untuk RAISA." data-msg-en="Hi etalas, I'd like to map a sales workflow for RAISA." target="_blank" rel="noopener"><i data-lucide="messages-square"></i><span class="id">Map Sales Workflow Saya</span><span class="en">Map My Sales Workflow</span></a>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer-grid">
-      <div class="footer-brand">
-        <a class="brand" href="#top" aria-label="RAISA home">
-          <span class="brand-mark"><i data-lucide="radar"></i></span>
-          <span>RAISA</span>
-        </a>
-        <p><span class="id">AI sales agent yang membantu tim mencari prospek dan melakukan follow-up, tanpa mengambil alih keputusan penting.</span><span class="en">An AI sales agent that helps teams find prospects, write outreach, and follow up — with humans still in control where it matters.</span></p>
-      </div>
-      <div class="footer-col">
-        <h4><span class="id">Produk</span><span class="en">Product</span></h4>
-        <a href="#solution"><span class="id">Solusi</span><span class="en">Solution</span></a>
-        <a href="#integrations"><span class="id">Integrasi</span><span class="en">Integrations</span></a>
-        <a href="https://wa.me/62811297339" data-wa data-msg-id="Hi etalas, saya mau book demo RAISA." data-msg-en="Hi etalas, I'd like to book a RAISA demo." target="_blank" rel="noopener">Book Demo</a>
-      </div>
-      <div class="footer-col">
-        <h4><span class="id">Kontak</span><span class="en">Contact</span></h4>
-        <a class="footer-contact" href="mailto:hello@etalas.com"><i data-lucide="mail"></i>hello@etalas.com</a>
-        <a class="footer-contact" href="https://wa.me/62811297339" data-wa data-msg-id="Hi etalas, saya mau tanya soal RAISA." data-msg-en="Hi etalas, I have a question about RAISA." target="_blank" rel="noopener"><i data-lucide="message-circle"></i><span class="id">Hubungi Kami</span><span class="en">Contact Us</span></a>
-        <div class="footer-social">
-          <a href="https://www.instagram.com/etalas.id/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
-          <a href="https://www.linkedin.com/company/etalas/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
         </div>
       </div>
     </div>
-    <div class="container footer-bottom">
-      <div><span class="id">© 2026 RAISA. Seluruh hak cipta dilindungi.</span><span class="en">© 2026 RAISA. All rights reserved.</span></div>
-      <div class="footer-meta">
-        <span><span class="id">Dibangun di atas OpenClaw</span><span class="en">Built on OpenClaw</span></span>
-        <a href="https://etalas.com" target="_blank" rel="noopener" class="footer-powered">
+  </section>
+
+  <!-- ───── INTEGRATIONS ───── -->
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 relative" id="integrations">
+    <div class="pointer-events-none absolute -z-10 inset-0">
+      <div class="absolute bottom-0 right-1/3 h-64 w-64 rounded-full bg-blue-400/[0.07] blur-3xl"></div>
+    </div>
+
+    <div class="[animation:fadeSlideIn_0.8s_ease-out_0s_both] animate-on-scroll animate flex items-center gap-3 mb-10">
+      <span class="text-xs font-semibold uppercase tracking-[0.16em] text-blue-400"><span class="id">INTEGRASI</span><span class="en">INTEGRATIONS</span></span>
+      <div class="h-px flex-1 bg-white/10"></div>
+      <span class="text-xs text-neutral-500">(03)</span>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start mb-12 [animation:fadeSlideIn_0.8s_ease-out_0.1s_both] animate-on-scroll animate">
+      <h2 class="text-4xl sm:text-5xl tracking-tighter leading-[1.05]">
+        <span class="id">Gunakan RAISA bersama tools <span class="text-blue-300">yang sudah dipakai tim Anda</span>.</span>
+        <span class="en">Works with the tools your sales team <span class="text-blue-300">already uses</span>.</span>
+      </h2>
+      <p class="text-neutral-300 text-base sm:text-lg leading-relaxed">
+        <span class="id">Tidak perlu mengubah workflow yang sudah berjalan. RAISA terhubung dengan Slack, LinkedIn, Apollo, dan WhatsApp — tools yang sudah digunakan tim sales Anda sehari-hari.</span>
+        <span class="en">No new tools required. RAISA works through Slack, LinkedIn, Apollo, and WhatsApp — the channels your sales team already uses every day.</span>
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 [animation:fadeSlideIn_0.8s_ease-out_0.2s_both] animate-on-scroll animate">
+      <div class="rounded-3xl border-gradient bg-white/5 p-6 flex flex-col gap-6 min-h-[140px]" style="border-radius:24px;">
+        <div class="w-10 h-10 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center text-sm font-bold text-white">S</div>
+        <b class="text-white font-semibold text-base">Slack</b>
+      </div>
+      <div class="rounded-3xl border-gradient bg-white/5 p-6 flex flex-col gap-6 min-h-[140px]" style="border-radius:24px;">
+        <div class="w-10 h-10 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center text-sm font-bold text-white">in</div>
+        <b class="text-white font-semibold text-base">LinkedIn</b>
+      </div>
+      <div class="rounded-3xl border-gradient bg-white/5 p-6 flex flex-col gap-6 min-h-[140px]" style="border-radius:24px;">
+        <div class="w-10 h-10 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center text-sm font-bold text-white">A</div>
+        <b class="text-white font-semibold text-base">Apollo</b>
+      </div>
+      <div class="rounded-3xl border-gradient bg-white/5 p-6 flex flex-col gap-6 min-h-[140px]" style="border-radius:24px;">
+        <div class="w-10 h-10 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center text-sm font-bold text-white">W</div>
+        <b class="text-white font-semibold text-base">WhatsApp</b>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── HOW IT WORKS / PROBLEM ───── -->
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-4 relative" id="problem">
+    <div class="rounded-3xl border-gradient p-6 sm:p-8 relative backdrop-blur" style="background:linear-gradient(225deg,rgba(255,255,255,0.0) 0%,rgba(255,255,255,0.05) 50%,rgba(255,255,255,0.0) 100%); border-radius: 24px;">
+      <div class="flex gap-6 pr-1 pl-1 items-center [animation:fadeSlideIn_0.8s_ease-out_0.1s_both] animate-on-scroll animate">
+        <h2 class="text-[36px] sm:text-6xl lg:text-7xl leading-[0.9] text-white tracking-tighter"><span class="id">Masalahnya.</span><span class="en">The problem.</span></h2>
+        <span aria-hidden="true" role="separator" aria-orientation="vertical" class="w-px bg-white/20 h-10"></span>
+        <p class="sm:text-base text-sm text-slate-300 mt-1 tracking-tight"><span class="id">Bagaimana RAISA membantu tim yang kehabisan waktu</span><span class="en">How RAISA helps teams that are out of time</span></p>
+      </div>
+      <div class="h-px bg-white/20 mt-4"></div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 mt-6 sm:mt-8 relative items-stretch">
+        <!-- PROBLEM 1 -->
+        <div class="lg:col-span-4 border-gradient rounded-[28px] p-6 sm:p-8 relative h-full flex flex-col [animation:fadeSlideIn_0.8s_ease-out_0.2s_both] animate-on-scroll animate" style="background:linear-gradient(225deg,rgba(255,255,255,0.0) 0%,rgba(255,255,255,0.05) 50%,rgba(255,255,255,0.0) 100%);">
+          <span class="absolute -top-4 left-6 inline-flex items-center px-4 py-1.5 rounded-full border border-rose-400/30 bg-neutral-950 text-xs sm:text-sm text-rose-300 tracking-tight" style="border-radius: 9999px;"><span class="id">MASALAH</span><span class="en">PROBLEM</span></span>
+          <div class="relative h-48 sm:h-56 rounded-2xl bg-white/5 border border-white/10 overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 p-4 sm:p-6 flex items-center justify-center">
+              <div class="bg-neutral-900/90 border border-rose-400/20 rounded-xl p-5 w-full shadow-2xl">
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-rose-500/15 ring-1 ring-rose-400/25">
+                    <i data-lucide="search" style="width:16px;height:16px;color:#fb7185"></i>
+                  </span>
+                  <div class="h-2 w-28 bg-white/60 rounded"></div>
+                </div>
+                <div class="space-y-2">
+                  <div class="h-2 w-full bg-rose-400/20 rounded"></div>
+                  <div class="h-2 w-4/5 bg-rose-400/15 rounded"></div>
+                  <div class="h-2 w-3/4 bg-rose-400/10 rounded"></div>
+                </div>
+                <div class="mt-4 inline-flex items-center gap-1.5 rounded-full bg-rose-500/15 ring-1 ring-rose-400/25 px-2.5 py-1 text-[10px] font-medium text-rose-300">
+                  <span class="h-1.5 w-1.5 rounded-full bg-rose-400"></span>
+                  <span class="id">Outreach tidak konsisten</span><span class="en">Inconsistent outreach</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h3 class="mt-6 text-3xl sm:text-4xl text-white tracking-tighter"><span class="id">Prospecting &amp; outreach memakan waktu</span><span class="en">Prospecting &amp; outreach eat up time</span></h3>
+          <p class="mt-2 text-sm sm:text-base text-neutral-300 max-w-[52ch] tracking-tight"><span class="id">Tim menghabiskan berjam-jam mencari prospek, dan pesan yang dikirim berbeda-beda tergantung siapa yang menanganinya.</span><span class="en">Teams spend hours building lists, and messaging discipline changes from person to person.</span></p>
+        </div>
+
+        <!-- PROBLEM 2 -->
+        <div class="lg:col-span-4 border-gradient rounded-[28px] p-6 sm:p-8 relative h-full flex flex-col [animation:fadeSlideIn_0.8s_ease-out_0.3s_both] animate-on-scroll animate" style="background:linear-gradient(225deg,rgba(255,255,255,0.0) 0%,rgba(255,255,255,0.05) 50%,rgba(255,255,255,0.0) 100%);">
+          <span class="absolute -top-4 left-6 inline-flex items-center px-4 py-1.5 rounded-full border border-amber-400/30 bg-neutral-950 text-xs sm:text-sm text-amber-300 tracking-tight" style="border-radius: 9999px;"><span class="id">TANTANGAN</span><span class="en">CHALLENGE</span></span>
+          <div class="relative h-48 sm:h-56 rounded-2xl border border-white/10 overflow-hidden bg-gradient-to-br from-white/5 to-white/0 p-4 flex items-center justify-center">
+            <div class="grid grid-cols-2 gap-3 w-full">
+              <div class="bg-neutral-900/80 border border-white/10 rounded-lg p-3 shadow-sm">
+                <div class="flex items-center gap-2 mb-2">
+                  <i data-lucide="mail" style="width:14px;height:14px;color:#fbbf24"></i>
+                  <div class="h-1.5 w-12 bg-amber-400/60 rounded"></div>
+                </div>
+                <div class="space-y-1"><div class="h-1 w-full bg-white/20 rounded"></div><div class="h-1 w-4/5 bg-white/20 rounded"></div></div>
+              </div>
+              <div class="bg-neutral-900/80 border border-white/10 rounded-lg p-3 shadow-sm">
+                <div class="flex items-center gap-2 mb-2">
+                  <i data-lucide="message-square" style="width:14px;height:14px;color:#fbbf24"></i>
+                  <div class="h-1.5 w-10 bg-amber-400/60 rounded"></div>
+                </div>
+                <div class="space-y-1"><div class="h-1 w-full bg-white/20 rounded"></div><div class="h-1 w-5/6 bg-white/20 rounded"></div></div>
+              </div>
+              <div class="bg-neutral-900/80 border border-white/10 rounded-lg p-3 shadow-sm">
+                <div class="flex items-center gap-2 mb-2">
+                  <i data-lucide="database" style="width:14px;height:14px;color:#fbbf24"></i>
+                  <div class="h-1.5 w-14 bg-amber-400/60 rounded"></div>
+                </div>
+                <div class="space-y-1"><div class="h-1 w-full bg-white/20 rounded"></div><div class="h-1 w-4/5 bg-white/20 rounded"></div></div>
+              </div>
+              <div class="bg-neutral-900/80 border border-white/10 rounded-lg p-3 shadow-sm">
+                <div class="flex items-center gap-2 mb-2">
+                  <i data-lucide="file-spreadsheet" style="width:14px;height:14px;color:#fbbf24"></i>
+                  <div class="h-1.5 w-8 bg-amber-400/60 rounded"></div>
+                </div>
+                <div class="space-y-1"><div class="h-1 w-full bg-white/20 rounded"></div><div class="h-1 w-3/4 bg-white/20 rounded"></div></div>
+              </div>
+            </div>
+          </div>
+          <h3 class="mt-6 text-3xl sm:text-4xl text-white tracking-tighter"><span class="id">Lead &amp; reporting tersebar di banyak tempat</span><span class="en">Leads &amp; reporting scattered everywhere</span></h3>
+          <p class="mt-2 text-sm sm:text-base text-neutral-300 max-w-[52ch] tracking-tight"><span class="id">Balasan dan sinyal ketertarikan tersebar di berbagai channel, dan tim baru bisa melihat aktivitas sales setelah data dirapikan manual.</span><span class="en">Replies and intent signals get buried across channels, and sales activity is hard to see until someone cleans up the data.</span></p>
+        </div>
+
+        <!-- SOLUTION -->
+        <div class="lg:col-span-4 border-gradient rounded-[28px] p-6 sm:p-8 relative h-full flex flex-col [animation:fadeSlideIn_0.8s_ease-out_0.4s_both] animate-on-scroll animate" style="background:linear-gradient(225deg,rgba(59,130,246,0.10) 0%,rgba(59,130,246,0.05) 50%,rgba(59,130,246,0.10) 100%);">
+          <span class="absolute -top-4 left-6 inline-flex items-center px-4 py-1.5 rounded-full border border-blue-400/30 bg-neutral-950 text-xs sm:text-sm text-blue-300 tracking-tight" style="border-radius: 9999px;"><span class="id">SOLUSI RAISA</span><span class="en">RAISA SOLUTION</span></span>
+          <div class="relative h-48 sm:h-56 rounded-2xl bg-white/5 border border-blue-400/20 overflow-hidden p-4 flex items-center justify-center">
+            <div class="w-full h-full rounded-xl overflow-hidden bg-neutral-900/80 border border-blue-400/10 p-3 flex flex-col justify-between">
+              <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 bg-blue-400/20 rounded-lg flex items-center justify-center">
+                    <i data-lucide="send" style="width:14px;height:14px;color:#93c5fd"></i>
+                  </div>
+                  <div class="h-2 w-20 bg-white/70 rounded"></div>
+                </div>
+                <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 ring-1 ring-emerald-400/25 px-2 py-0.5 text-[9px] font-medium text-emerald-300">
+                  <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                  <span class="id">Terkirim</span><span class="en">Sent</span>
+                </span>
+              </div>
+              <div class="flex items-end justify-center gap-1.5 h-20">
+                <div class="w-3 rounded-sm bg-blue-400/40" style="height:35%"></div>
+                <div class="w-3 rounded-sm bg-blue-400/55" style="height:55%"></div>
+                <div class="w-3 rounded-sm bg-blue-400/70" style="height:45%"></div>
+                <div class="w-3 rounded-sm bg-blue-400/80" style="height:70%"></div>
+                <div class="w-3 rounded-sm bg-blue-400/90" style="height:60%"></div>
+                <div class="w-3 rounded-sm bg-blue-400" style="height:90%"></div>
+                <div class="w-3 rounded-sm bg-blue-300" style="height:100%"></div>
+              </div>
+              <div class="grid grid-cols-3 gap-2 mt-2">
+                <div class="bg-blue-400/10 border border-blue-400/20 rounded p-1.5 text-center"><div class="h-1 w-8 bg-blue-400 rounded mx-auto"></div></div>
+                <div class="bg-blue-400/10 border border-blue-400/20 rounded p-1.5 text-center"><div class="h-1 w-6 bg-blue-400 rounded mx-auto"></div></div>
+                <div class="bg-blue-400/10 border border-blue-400/20 rounded p-1.5 text-center"><div class="h-1 w-10 bg-blue-400 rounded mx-auto"></div></div>
+              </div>
+            </div>
+          </div>
+          <h3 class="mt-6 text-3xl sm:text-4xl text-white tracking-tighter"><span class="id">Bagaimana RAISA menyelesaikannya</span><span class="en">How RAISA solves it</span></h3>
+          <p class="mt-2 text-sm sm:text-base text-neutral-300 max-w-[52ch] tracking-tight"><span class="id">RAISA membantu tim menyimpan konteks lead, menjalankan pekerjaan rutin, dan memastikan follow-up penting tidak terlewat.</span><span class="en">RAISA gives your sales process a working memory and an execution layer, so nothing important slips through.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── GET STARTED / SERVICES ───── -->
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-24 relative" id="demo">
+    <div class="rounded-3xl border-gradient p-6 sm:p-8 backdrop-blur" style="background:linear-gradient(225deg,rgba(255,255,255,0.0) 0%,rgba(255,255,255,0.05) 50%,rgba(255,255,255,0.0) 100%); border-radius: 24px;">
+      <div class="flex gap-6 pr-1 pl-1 items-center [animation:fadeSlideIn_0.8s_ease-out_0.1s_both] animate-on-scroll animate">
+        <span class="text-4xl text-white tracking-tighter"><span class="id">Mulai</span><span class="en">Get Started</span></span>
+        <span aria-hidden="true" role="separator" aria-orientation="vertical" class="w-px bg-white/10 h-10"></span>
+        <span class="text-sm text-neutral-300"><span class="id">RAISA · Setup dalam hitungan hari</span><span class="en">RAISA · Set up in days</span></span>
+      </div>
+      <div class="h-px bg-white/10 mt-4"></div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 items-center gap-8 sm:gap-10 mt-6 sm:mt-8">
+        <!-- Left content -->
+        <div class="lg:col-span-6 [animation:fadeSlideIn_0.8s_ease-out_0.2s_both] animate-on-scroll animate">
+          <h1 class="text-[36px] sm:text-5xl md:text-6xl leading-[1.05] text-zinc-100 tracking-tighter">
+            <span class="id">Siap <span class="text-blue-300">mengotomatisasi</span> proses sales Anda?</span>
+            <span class="en">Ready to put <span class="text-blue-300">AI</span> into your sales workflow?</span>
+          </h1>
+
+          <div class="mt-6 flex items-center gap-3 flex-wrap">
+            <span class="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium text-black bg-gradient-to-r from-blue-400 via-blue-400 to-blue-300 shadow-[0_8px_30px_rgba(59,130,246,0.25)]" style="border-radius: 9999px;"><span class="id">Setup 1–2 minggu</span><span class="en">Setup 1–2 weeks</span></span>
+            <span class="inline-flex items-center rounded-full px-3 py-1 text-sm text-zinc-200 bg-white/5 ring-1 ring-white/10" style="border-radius: 9999px;"><span class="id">Tanpa migrasi data</span><span class="en">No data migration</span></span>
+          </div>
+
+          <p class="text-zinc-400 text-sm sm:text-base mt-4">
+            <span class="id">Ceritakan target customer Anda, bagaimana tim melakukan follow-up saat ini, dan di mana proses sales sering terhambat. Tim etalas akan membantu memetakan bagaimana RAISA dapat mendukung prospecting, outreach, reporting, dan approval.</span>
+            <span class="en">Tell us who you sell to, how your team follows up today, and where sales gets stuck. etalas will map how RAISA can support prospecting, outreach, reporting, and approval flow.</span>
+          </p>
+
+          <div class="h-px bg-white/10 mt-6"></div>
+
+          <div class="mt-6">
+            <h3 class="text-2xl sm:text-3xl text-zinc-100 tracking-tighter mb-4"><span class="id">Yang Perlu Disiapkan</span><span class="en">What You'll Need</span></h3>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3">
+                <span class="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-400/15 ring-1 ring-blue-400/25 mt-0.5">
+                  <i data-lucide="check" style="width:14px;height:14px;color:#93c5fd"></i>
+                </span>
+                <p class="text-zinc-300 text-sm sm:text-base"><span class="id">Target customer &amp; ICP yang jelas.</span><span class="en">A clear target customer &amp; ICP.</span></p>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-400/15 ring-1 ring-blue-400/25 mt-0.5">
+                  <i data-lucide="check" style="width:14px;height:14px;color:#93c5fd"></i>
+                </span>
+                <p class="text-zinc-300 text-sm sm:text-base"><span class="id">Akses ke channel yang dipakai tim (Slack, WhatsApp, LinkedIn).</span><span class="en">Access to the channels your team uses (Slack, WhatsApp, LinkedIn).</span></p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="flex gap-3 mt-8 items-center flex-wrap">
+            <a class="group inline-flex items-center gap-2 hover:opacity-90 transition-opacity border-gradient text-sm font-medium text-black bg-gradient-to-r from-blue-400 via-blue-400 to-blue-300 rounded-full pt-2.5 pr-5 pb-2.5 pl-5 shadow-[0_8px_30px_rgba(59,130,246,0.25)] no-underline"
+               style="border-radius: 9999px"
+               href="https://wa.me/62811297339"
+               data-wa data-msg-id="Hi etalas, saya mau map sales workflow untuk RAISA." data-msg-en="Hi etalas, I'd like to map a sales workflow for RAISA."
+               target="_blank" rel="noopener">
+              <i data-lucide="messages-square" style="width:16px;height:16px"></i>
+              <span class="id">Map Sales Workflow Saya</span><span class="en">Map My Sales Workflow</span>
+            </a>
+            <a class="inline-flex border-gradient hover:text-white transition-all hover:-translate-y-0.5 text-sm font-medium text-white/80 bg-white/5 rounded-full pt-3 pr-5 pb-3 pl-5 backdrop-blur-xl gap-x-2 gap-y-2 items-center no-underline" style="border-radius: 9999px" href="#solution">
+              <i data-lucide="play-circle" style="width:16px;height:16px"></i>
+              <span class="id">Lihat Cara Kerja</span><span class="en">See How It Works</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right showcase -->
+        <div class="lg:col-span-6 [animation:fadeSlideIn_0.8s_ease-out_0.3s_both] animate-on-scroll animate">
+          <div class="relative mx-auto w-full max-w-[860px]" style="filter: drop-shadow(0 20px 60px rgba(0,0,0,0.6));">
+            <div class="rounded-[28px] bg-neutral-900/60 ring-1 ring-white/10 p-3">
+              <div class="relative overflow-hidden rounded-[22px] bg-neutral-950 border border-white/10">
+                <div class="flex items-center gap-2 px-4 py-3 border-b border-white/10">
+                  <span class="h-3 w-3 rounded-full bg-zinc-700"></span>
+                  <span class="h-3 w-3 rounded-full bg-zinc-700/70"></span>
+                  <span class="h-3 w-3 rounded-full bg-zinc-700/50"></span>
+                </div>
+
+                <div class="p-6 sm:p-8 space-y-5">
+                  <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5 border-gradient hover:scale-[1.02] transition-transform duration-300">
+                    <div class="flex items-center gap-3">
+                      <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-blue-400/15 ring-1 ring-white/10">
+                        <i data-lucide="search" style="width:20px;height:20px;color:#93c5fd"></i>
+                      </span>
+                      <div>
+                        <p class="text-white font-semibold tracking-tight leading-none"><span class="id">Prospecting &amp; List Building</span><span class="en">Prospecting &amp; List Building</span></p>
+                        <p class="text-xs text-neutral-400 mt-1.5"><span class="id">Lead ditemukan sesuai ICP Anda.</span><span class="en">Leads discovered by your ICP.</span></p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5 border-gradient hover:scale-[1.02] transition-transform duration-300">
+                    <div class="flex items-center gap-3">
+                      <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-blue-400/15 ring-1 ring-white/10">
+                        <i data-lucide="mail" style="width:20px;height:20px;color:#93c5fd"></i>
+                      </span>
+                      <div>
+                        <p class="text-white font-semibold tracking-tight leading-none"><span class="id">Outreach &amp; Follow-up</span><span class="en">Outreach &amp; Follow-up</span></p>
+                        <p class="text-xs text-neutral-400 mt-1.5"><span class="id">Draft pesan &amp; urutan follow-up otomatis.</span><span class="en">Message drafts &amp; automated follow-up sequences.</span></p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5 border-gradient hover:scale-[1.02] transition-transform duration-300">
+                    <div class="flex items-center gap-3">
+                      <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-blue-400/15 ring-1 ring-white/10">
+                        <i data-lucide="bar-chart-3" style="width:20px;height:20px;color:#93c5fd"></i>
+                      </span>
+                      <div>
+                        <p class="text-white font-semibold tracking-tight leading-none"><span class="id">Lead Scoring &amp; Reporting</span><span class="en">Lead Scoring &amp; Reporting</span></p>
+                        <p class="text-xs text-neutral-400 mt-1.5"><span class="id">Ringkasan aktivitas dikirim ke channel tim.</span><span class="en">Activity summaries delivered to your channel.</span></p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="rounded-2xl bg-gradient-to-r from-blue-500/15 to-blue-300/10 ring-1 ring-blue-400/20 p-5 border-gradient">
+                    <div class="flex items-center justify-between">
+                      <div>
+                        <p class="text-xs text-blue-200/80 tracking-tight"><span class="id">Model Kerja Sama</span><span class="en">Working Model</span></p>
+                        <p class="text-lg text-white font-semibold tracking-tighter mt-1"><span class="id">Custom, sesuai kebutuhan tim</span><span class="en">Custom, tailored to your team</span></p>
+                      </div>
+                      <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 ring-1 ring-emerald-400/20 px-2.5 py-1 text-[10px] font-medium text-emerald-300">
+                        <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span class="id">Slot Demo Tersedia</span><span class="en">Demo Slots Open</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pointer-events-none absolute -right-24 bottom-0 w-72 h-72 rounded-full bg-white/10 blur-3xl"></div>
+                <div class="pointer-events-none absolute -left-24 -top-24 w-80 h-80 rounded-full bg-white/5 blur-3xl"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ───── FOOTER ───── -->
+<footer class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-24 mb-16">
+  <div class="rounded-3xl border-gradient p-8 sm:p-12 backdrop-blur" style="background:linear-gradient(225deg,rgba(255,255,255,0.0) 0%,rgba(255,255,255,0.05) 50%,rgba(255,255,255,0.0) 100%); border-radius: 24px;">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <!-- Brand -->
+      <div class="md:col-span-1">
+        <a class="flex items-center gap-3 mb-4 no-underline" href="#top" aria-label="RAISA home">
+          <span class="inline-flex items-center justify-center bg-white/10 w-9 h-9 rounded-full backdrop-blur border-gradient" style="border-radius: 9999px;">
+            <i data-lucide="radar" style="width:16px;height:16px;color:white"></i>
+          </span>
+          <span class="text-lg font-semibold tracking-tight text-white">RAISA</span>
+        </a>
+        <p class="text-sm text-neutral-400 max-w-xs">
+          <span class="id">AI sales agent yang membantu tim mencari prospek dan melakukan follow-up, tanpa mengambil alih keputusan penting.</span>
+          <span class="en">An AI sales agent that helps teams find prospects, write outreach, and follow up — with humans still in control where it matters.</span>
+        </p>
+      </div>
+
+      <!-- Product -->
+      <div>
+        <h4 class="text-sm font-semibold text-white mb-4"><span class="id">Produk</span><span class="en">Product</span></h4>
+        <ul class="space-y-3 text-sm text-neutral-400">
+          <li><a class="hover:text-white transition-colors no-underline" href="#solution"><span class="id">Solusi</span><span class="en">Solution</span></a></li>
+          <li><a class="hover:text-white transition-colors no-underline" href="#integrations"><span class="id">Integrasi</span><span class="en">Integrations</span></a></li>
+          <li>
+            <a class="hover:text-white transition-colors no-underline"
+               href="https://wa.me/62811297339"
+               data-wa data-msg-id="Hi etalas, saya mau book demo RAISA." data-msg-en="Hi etalas, I'd like to book a RAISA demo."
+               target="_blank" rel="noopener">Book Demo</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h4 class="text-sm font-semibold text-white mb-4"><span class="id">Kontak</span><span class="en">Contact</span></h4>
+        <ul class="space-y-3 text-sm text-neutral-400">
+          <li><a class="hover:text-white transition-colors no-underline" href="mailto:hello@etalas.com">hello@etalas.com</a></li>
+          <li>
+            <a class="hover:text-white transition-colors no-underline"
+               href="https://wa.me/62811297339"
+               data-wa data-msg-id="Hi etalas, saya mau tanya soal RAISA." data-msg-en="Hi etalas, I have a question about RAISA."
+               target="_blank" rel="noopener"><span class="id">Hubungi Kami</span><span class="en">Contact Us</span></a>
+          </li>
+          <li><a class="hover:text-white transition-colors no-underline" href="https://www.instagram.com/etalas.id/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a class="hover:text-white transition-colors no-underline" href="https://www.linkedin.com/company/etalas/" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <h4 class="text-sm font-semibold text-white mb-4"><span class="id">Perusahaan</span><span class="en">Company</span></h4>
+        <ul class="space-y-3 text-sm text-neutral-400">
+          <li><a class="hover:text-white transition-colors no-underline" href="https://etalas.com" target="_blank" rel="noopener"><span class="id">Tentang etalas</span><span class="en">About etalas</span></a></li>
+          <li><span class="id">Dibangun di atas OpenClaw</span><span class="en">Built on OpenClaw</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="h-px bg-white/10 my-8"></div>
+
+    <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+      <p class="text-sm text-neutral-400">
+        <span class="id">© 2026 RAISA. Seluruh hak cipta dilindungi.</span>
+        <span class="en">© 2026 RAISA. All rights reserved.</span>
+      </p>
+      <div class="flex items-center gap-4 text-sm text-neutral-400">
+        <a href="https://etalas.com" target="_blank" rel="noopener" class="flex items-center gap-1.5 hover:text-white transition-colors no-underline text-neutral-400">
           <span><span class="id">Didukung oleh</span><span class="en">Powered by</span></span>
-          <img src="assets/etalas-logo.png" alt="etalas" class="footer-powered-logo">
+          <img src="assets/etalas-logo.png" alt="etalas" style="height:11px;width:auto;filter:invert(1);opacity:.6;">
+        </a>
+        <span class="w-px h-4 bg-white/20"></span>
+        <a href="https://www.instagram.com/etalas.id/" target="_blank" rel="noopener" class="hover:text-white transition-colors" aria-label="Instagram">
+          <i data-lucide="instagram" style="width:16px;height:16px"></i>
+        </a>
+        <a href="https://www.linkedin.com/company/etalas/" target="_blank" rel="noopener" class="hover:text-white transition-colors" aria-label="LinkedIn">
+          <i data-lucide="linkedin" style="width:16px;height:16px"></i>
         </a>
       </div>
     </div>
-  </footer>
+  </div>
+</footer>
 
-  <script>
-    const root=document.documentElement;
-    const langButtons=[...document.querySelectorAll("[data-set-lang]")];
-    const waLinks=[...document.querySelectorAll("[data-wa]")];
-    function updateWaLinks(lang){
-      waLinks.forEach(a=>{
-        const msg=lang==="en"?a.dataset.msgEn:a.dataset.msgId;
-        a.href="https://wa.me/62811297339?text="+encodeURIComponent(msg);
+<script>
+  // Lang switcher
+  const root = document.documentElement;
+  const langButtons = [...document.querySelectorAll("[data-set-lang]")];
+  const waLinks = [...document.querySelectorAll("[data-wa]")];
+
+  function updateWaLinks(lang) {
+    waLinks.forEach(a => {
+      const msg = lang === "en" ? a.dataset.msgEn : a.dataset.msgId;
+      a.href = "https://wa.me/62811297339?text=" + encodeURIComponent(msg);
+    });
+  }
+
+  function setLang(lang) {
+    root.dataset.lang = lang;
+    root.lang = lang;
+    langButtons.forEach(btn => btn.classList.toggle("active", btn.dataset.setLang === lang));
+    updateWaLinks(lang);
+  }
+
+  langButtons.forEach(btn => btn.addEventListener("click", () => setLang(btn.dataset.setLang)));
+  updateWaLinks(root.dataset.lang || "id");
+
+  // Lucide icons
+  window.addEventListener("load", () => { if (window.lucide) { lucide.createIcons(); } });
+
+  // Nav scroll blur
+  const navEl = document.getElementById("nav");
+  function onNavScroll() {
+    const scrolled = window.scrollY > 8;
+    navEl.classList.toggle("bg-neutral-950/80", scrolled);
+    navEl.classList.toggle("backdrop-blur-xl", scrolled);
+    navEl.classList.toggle("border-b", scrolled);
+    navEl.classList.toggle("border-white/10", scrolled);
+  }
+  onNavScroll();
+  window.addEventListener("scroll", onNavScroll, { passive: true });
+
+  // Mobile menu
+  const menuBtn = document.querySelector("[data-menu]");
+  const mobileNav = document.getElementById("mobileNav");
+
+  function setMenuOpen(open) {
+    mobileNav.classList.toggle("hidden", !open);
+    menuBtn.setAttribute("aria-expanded", String(open));
+    menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    const icon = menuBtn.querySelector("[data-lucide]");
+    if (icon) { icon.setAttribute("data-lucide", open ? "x" : "menu"); }
+    if (window.lucide) { lucide.createIcons(); }
+  }
+
+  menuBtn.addEventListener("click", () => setMenuOpen(mobileNav.classList.contains("hidden")));
+  document.querySelectorAll("#mobileNav a").forEach(a => a.addEventListener("click", () => setMenuOpen(false)));
+
+  // Follow-up chart
+  document.addEventListener('DOMContentLoaded', () => {
+    const ctx = document.getElementById('followupChart');
+    if (ctx && window.Chart) {
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['S','S','R','K','J','S','M'],
+          datasets: [{
+            data: [6, 8, 5, 9, 7, 4, 6],
+            backgroundColor: '#3b82f6',
+            borderRadius: 6,
+            borderSkipped: false,
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false }, tooltip: { enabled: false } },
+          scales: {
+            x: { grid: { display: false }, ticks: { color: '#9ca3af', font: { family: 'Inter', weight: '500' } } },
+            y: { display: false }
+          }
+        }
       });
     }
-    function setLang(lang){
-      root.dataset.lang=lang;
-      root.lang=lang;
-      langButtons.forEach(btn=>btn.classList.toggle("active",btn.dataset.setLang===lang));
-      updateWaLinks(lang);
-    }
-    langButtons.forEach(btn=>btn.addEventListener("click",()=>setLang(btn.dataset.setLang)));
-    updateWaLinks(root.dataset.lang||"id");
-    window.addEventListener("load",()=>{ if(window.lucide){ lucide.createIcons(); } });
-
-    const navEl=document.querySelector(".nav");
-    function onNavScroll(){ navEl.classList.toggle("scrolled",window.scrollY>8); }
-    onNavScroll();
-    window.addEventListener("scroll",onNavScroll,{passive:true});
-
-    const menuBtn=document.querySelector("[data-menu]");
-    function setMenuOpen(open){
-      navEl.classList.toggle("nav-open",open);
-      menuBtn.setAttribute("aria-expanded",String(open));
-      menuBtn.setAttribute("aria-label",open?"Close menu":"Open menu");
-      menuBtn.querySelector("[data-lucide]").setAttribute("data-lucide",open?"x":"menu");
-      if(window.lucide){ lucide.createIcons(); }
-    }
-    menuBtn.addEventListener("click",()=>setMenuOpen(!navEl.classList.contains("nav-open")));
-    document.querySelectorAll("#navLinks a").forEach(a=>a.addEventListener("click",()=>setMenuOpen(false)));
-
-    const revealEls=[...document.querySelectorAll(".section-head,.problem-split,.solution-body,.integrations-grid")];
-    const reduceMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if(reduceMotion || !("IntersectionObserver" in window)){
-      revealEls.forEach(el=>el.classList.add("is-visible"));
-    } else {
-      const io=new IntersectionObserver(entries=>{
-        entries.forEach(entry=>{
-          if(entry.isIntersecting){ entry.target.classList.add("is-visible"); io.unobserve(entry.target); }
-        });
-      },{threshold:.15,rootMargin:"0px 0px -8% 0px"});
-      revealEls.forEach(el=>io.observe(el));
-    }
-  </script>
+  });
+</script>
 </body>
 </html>
